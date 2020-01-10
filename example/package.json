@@ -1,0 +1,38 @@
+{
+    "name": "coaty-opcua-example",
+    "version": "1.0.0",
+    "description": "Example on connecting Coaty JS to OPC UA",
+    "scripts": {
+        "build": "gulp build",
+        "lint": "gulp lint",
+        "lint:fix": "gulp lint:fix",
+        "broker": "coaty-scripts broker --nobonjour",
+        "broker:verbose": "coaty-scripts broker --nobonjour --verbose",
+        "producer": "node dist/producer/agent.js",
+        "consumer": "node dist/consumer/agent.js",
+        "opcua:server": "node dist/opcua-server/producer-server.js",
+        "opcua:commander": "opcua-commander -e opc.tcp://localhost:4334/UA/Producer"
+    },
+    "readme": "README.md",
+    "author": "Siemens AG",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "coaty": "^1.11.1",
+		"coaty-opcua": "^1.0.0",
+        "node-opcua-client": "^2.4.0",
+        "node-opcua-server": "^2.4.1",
+        "opcua-commander": "^0.7.1",
+        "rxjs": "6.4.0"
+    },
+    "devDependencies": {
+        "@types/node": "12.0.0",
+        "fs-extra": "8.0.1",
+        "gulp": "4.0.0",
+        "gulp-sourcemaps": "2.6.5",
+        "gulp-tslint": "8.1.4",
+        "gulp-typescript": "5.0.1",
+        "tslint": "5.15.0",
+        "typescript": "3.4.1"
+    }
+}

@@ -1,0 +1,358 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>OpcuaCallReturnMapping | coaty-opcua v1.0.0</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">coaty-opcua v1.0.0</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="opcuacallreturnmapping.html">OpcuaCallReturnMapping</a>
+				</li>
+			</ul>
+			<h1>Interface OpcuaCallReturnMapping</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Defines a one-to-one mapping from a Call-Return event operation to an OPC UA
+						method call.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">OpcuaCallReturnMapping</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuacallreturnmapping.html#coerceoutputarguments" class="tsd-kind-icon">coerce<wbr>Output<wbr>Arguments</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuacallreturnmapping.html#inputarguments" class="tsd-kind-icon">input<wbr>Arguments</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuacallreturnmapping.html#operation" class="tsd-kind-icon">operation</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuacallreturnmapping.html#operationcontext" class="tsd-kind-icon">operation<wbr>Context</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="coerceoutputarguments" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> coerce<wbr>Output<wbr>Arguments</h3>
+					<div class="tsd-signature tsd-kind-icon">coerce<wbr>Output<wbr>Arguments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/opcua-remote-operations-controller.ts:106</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A coercion function that coerces the array of result (i.e. output
+								argument) values of the OPC UA method call to the result value of the
+							associated Return event (optional).</p>
+						</div>
+						<p>If not specified, a default coercion takes place: If the array of output
+							argument values contains just a single value, this value is passed as a
+							result value. If the array of output argument values is empty,
+							<code>undefined</code> is passed as result value. Otherwise, the array of output
+						argument values is passed unchanged.</p>
+						<p>If the coercion function throws an error, a Return event with a &quot;Bad
+						OPC UA method call&quot; error (error code 1) is published.</p>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>resultValues<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>resultValues: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="inputarguments" class="tsd-anchor"></a>
+					<h3>input<wbr>Arguments</h3>
+					<div class="tsd-signature tsd-kind-icon">input<wbr>Arguments<span class="tsd-signature-symbol">:</span> <a href="opcuainputargumentmapping.html" class="tsd-signature-type">OpcuaInputArgumentMapping</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/opcua-remote-operations-controller.ts:90</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An array of mappings for OPC UA method input arguments associated with
+							specific Call event parameters.</p>
+						</div>
+						<p>The order of mappings must mirror the order of OPC UA input arguments.
+							Superfluous Call event parameters are ignored. If input argument mappings
+							for unknown Call event parameters are specified, the associated OPC UA
+							method is not invoked and a Return event with an InvalidParameters error
+						is published.</p>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="operation" class="tsd-anchor"></a>
+					<h3>operation</h3>
+					<div class="tsd-signature tsd-kind-icon">operation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/opcua-remote-operations-controller.ts:72</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of the Call event operation to be mapped to an OPC UA method
+							call.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="operationcontext" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> operation<wbr>Context</h3>
+					<div class="tsd-signature tsd-kind-icon">operation<wbr>Context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CoatyObject</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/opcua-remote-operations-controller.ts:78</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The operation context to be matched against the context filter of the
+							Call event (optional).</p>
+						</div>
+					</div>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="../classes/opcuaconnector.html" class="tsd-kind-icon">Opcua<wbr>Connector</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/opcuaioactorcontroller.html" class="tsd-kind-icon">Opcua<wbr>IoActor<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/opcuaiosourcecontroller.html" class="tsd-kind-icon">Opcua<wbr>IoSource<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/opcuamqttcontroller.html" class="tsd-kind-icon">Opcua<wbr>Mqtt<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/opcuaremoteoperationcontroller.html" class="tsd-kind-icon">Opcua<wbr>Remote<wbr>Operation<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/opcuasensorio.html" class="tsd-kind-icon">Opcua<wbr>Sensor<wbr>Io</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/opcuasensorthingscontroller.html" class="tsd-kind-icon">Opcua<wbr>Sensor<wbr>Things<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="opcuaanalogdataitem.html" class="tsd-kind-icon">Opcua<wbr>Analog<wbr>Data<wbr>Item</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface">
+						<a href="opcuacallreturnmapping.html" class="tsd-kind-icon">Opcua<wbr>Call<wbr>Return<wbr>Mapping</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="opcuacallreturnmapping.html#coerceoutputarguments" class="tsd-kind-icon">coerce<wbr>Output<wbr>Arguments</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="opcuacallreturnmapping.html#inputarguments" class="tsd-kind-icon">input<wbr>Arguments</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="opcuacallreturnmapping.html#operation" class="tsd-kind-icon">operation</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="opcuacallreturnmapping.html#operationcontext" class="tsd-kind-icon">operation<wbr>Context</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="opcuadatasource.html" class="tsd-kind-icon">Opcua<wbr>Data<wbr>Source</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="opcuaeuinformation.html" class="tsd-kind-icon">Opcua<wbr>EuInformation</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="opcuainputargumentmapping.html" class="tsd-kind-icon">Opcua<wbr>Input<wbr>Argument<wbr>Mapping</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="opcuaioactoroptions.html" class="tsd-kind-icon">Opcua<wbr>IoActor<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="opcuaiosourceoptions.html" class="tsd-kind-icon">Opcua<wbr>IoSource<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="opcuamqttoptions.html" class="tsd-kind-icon">Opcua<wbr>Mqtt<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="opcuanodeidentifier.html" class="tsd-kind-icon">Opcua<wbr>Node<wbr>Identifier</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="opcuaoptions.html" class="tsd-kind-icon">Opcua<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="opcuaremoteoperationoptions.html" class="tsd-kind-icon">Opcua<wbr>Remote<wbr>Operation<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="opcuasensoroptions.html" class="tsd-kind-icon">Opcua<wbr>Sensor<wbr>Options</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

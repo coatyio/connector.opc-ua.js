@@ -1,0 +1,1623 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>OpcuaSensorThingsController | coaty-opcua v1.0.0</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">coaty-opcua v1.0.0</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="opcuasensorthingscontroller.html">OpcuaSensorThingsController</a>
+				</li>
+			</ul>
+			<h1>Class OpcuaSensorThingsController</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Creates and manages Sensor and Thing objects for monitored OPC UA items.</p>
+					</div>
+					<p>Acts as a sensor source for OPC UA items (e.g. analog data items), i.e.
+						advertises sensor objects, makes them discoverable, and publishes
+					observations for its sensors associated with OPC UA items.</p>
+					<p>Mappings from OPC UA data sources to sensor object ids are configured on a
+						controller option named <code>opcuaSensorOptions</code> which must implement the
+					<code>opcuaSensorOptions</code> interface.</p>
+					<p>The sensor used for mapping OPC UA data sources can be defined either
+						programmatically by calling <code>registerSensor</code> method or by specifying them in
+						the controller&#39;s <code>sensors</code> option (see documentation of base class
+						<code>SensorSourceController</code>). In both cases, specify a sensor&#39;s io interface to
+						be of type <code>OpcuaSensorIo</code> and specify the <code>observationPublicationType</code>
+					property either as</p>
+					<ul>
+						<li><code>&quot;none&quot;</code>: an observation is published on a Channel event synchronously with
+						each received OPC UA data value (default),</li>
+						<li><code>&quot;advertise&quot;</code>: an observation is published on an Advertise event at regular
+						intervals specified by <code>samplingInterval</code>, or</li>
+						<li><code>&quot;channel&quot;</code>: an observation is published on a Channel event at regular
+						intervals specified by <code>samplingInterval</code>.</li>
+					</ul>
+					<p>Thing objects for the registered sensors can be registered either
+						programmatically by calling <code>registerThing</code> method or by specifying them in
+						the controller&#39;s <code>things</code> option as an array of <code>Thing</code> objects. Registered
+						Thing objects are advertised (unless <code>ignoreThingAdvertise</code> option is set)
+						and made discoverable (unless <code>skipThingDiscoverEvents</code> option is set) either
+						by their Thing object type or by their Thing object type <em>and</em> their external
+					ID.</p>
+					<p>By default, monitored OPC UA data values are passed unchanged as observation
+						results. You can implement a specific data value coercion by defining a
+					<code>coerceValue</code> function in the associated <code>OpcuaDataSource</code>.</p>
+					<dl class="tsd-comment-tags">
+						<dt>remarks</dt>
+						<dd><p>This controller only runs in a Node.js runtime, not in a browser.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="tsd-signature-type">SensorSourceController</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<span class="target">OpcuaSensorThingsController</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">IController</span></li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-inherited">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-inherited">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#communicationmanager" class="tsd-kind-icon">communication<wbr>Manager</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#identity" class="tsd-kind-icon">identity</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#options" class="tsd-kind-icon">options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#registeredsensorcontainers" class="tsd-kind-icon">registered<wbr>Sensor<wbr>Containers</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#registeredsensors" class="tsd-kind-icon">registered<wbr>Sensors</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#runtime" class="tsd-kind-icon">runtime</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="opcuasensorthingscontroller.html#createobservation" class="tsd-kind-icon">create<wbr>Observation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="opcuasensorthingscontroller.html#extendlogobject" class="tsd-kind-icon">extend<wbr>Log<wbr>Object</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="opcuasensorthingscontroller.html#getchannelid" class="tsd-kind-icon">get<wbr>Channel<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#getsensor" class="tsd-kind-icon">get<wbr>Sensor</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#getsensorcontainer" class="tsd-kind-icon">get<wbr>Sensor<wbr>Container</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#getsensorio" class="tsd-kind-icon">get<wbr>Sensor<wbr>Io</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#getsensorvalueobservable" class="tsd-kind-icon">get<wbr>Sensor<wbr>Value<wbr>Observable</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="opcuasensorthingscontroller.html#initializeidentity" class="tsd-kind-icon">initialize<wbr>Identity</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#isregistered" class="tsd-kind-icon">is<wbr>Registered</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#logdebug" class="tsd-kind-icon">log<wbr>Debug</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#logerror" class="tsd-kind-icon">log<wbr>Error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#logerrorwithstacktrace" class="tsd-kind-icon">log<wbr>Error<wbr>With<wbr>Stacktrace</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#logfatal" class="tsd-kind-icon">log<wbr>Fatal</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#loginfo" class="tsd-kind-icon">log<wbr>Info</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#logwarning" class="tsd-kind-icon">log<wbr>Warning</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="opcuasensorthingscontroller.html#oncommunicationmanagerstarting" class="tsd-kind-icon">on<wbr>Communication<wbr>Manager<wbr>Starting</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="opcuasensorthingscontroller.html#oncommunicationmanagerstopping" class="tsd-kind-icon">on<wbr>Communication<wbr>Manager<wbr>Stopping</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#oncontainerresolved" class="tsd-kind-icon">on<wbr>Container<wbr>Resolved</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#ondispose" class="tsd-kind-icon">on<wbr>Dispose</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="opcuasensorthingscontroller.html#oninit" class="tsd-kind-icon">on<wbr>Init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="opcuasensorthingscontroller.html#onobservationdidpublish" class="tsd-kind-icon">on<wbr>Observation<wbr>Did<wbr>Publish</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="opcuasensorthingscontroller.html#onobservationwillpublish" class="tsd-kind-icon">on<wbr>Observation<wbr>Will<wbr>Publish</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#publishadvertisedobservation" class="tsd-kind-icon">publish<wbr>Advertised<wbr>Observation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#publishchanneledobservation" class="tsd-kind-icon">publish<wbr>Channeled<wbr>Observation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite"><a href="opcuasensorthingscontroller.html#registersensor" class="tsd-kind-icon">register<wbr>Sensor</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="opcuasensorthingscontroller.html#registerthing" class="tsd-kind-icon">register<wbr>Thing</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="opcuasensorthingscontroller.html#traceopcuaerror" class="tsd-kind-icon">trace<wbr>Opcua<wbr>Error</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="opcuasensorthingscontroller.html#unregistersensor" class="tsd-kind-icon">unregister<wbr>Sensor</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Opcua<wbr>Sensor<wbr>Things<wbr>Controller<span class="tsd-signature-symbol">(</span>runtime<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Runtime</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ControllerOptions</span>, communicationManager<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommunicationManager</span>, controllerName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="opcuasensorthingscontroller.html" class="tsd-signature-type">OpcuaSensorThingsController</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from Controller.__constructor</p>
+								<ul>
+									<li>Defined in node_modules/coaty/controller/controller.d.ts:55</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>runtime: <span class="tsd-signature-type">Runtime</span></h5>
+								</li>
+								<li>
+									<h5>options: <span class="tsd-signature-type">ControllerOptions</span></h5>
+								</li>
+								<li>
+									<h5>communicationManager: <span class="tsd-signature-type">CommunicationManager</span></h5>
+								</li>
+								<li>
+									<h5>controllerName: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="opcuasensorthingscontroller.html" class="tsd-signature-type">OpcuaSensorThingsController</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="communicationmanager" class="tsd-anchor"></a>
+					<h3>communication<wbr>Manager</h3>
+					<div class="tsd-signature tsd-kind-icon">communication<wbr>Manager<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CommunicationManager</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Controller.communicationManager</p>
+						<ul>
+							<li>Defined in node_modules/coaty/controller/controller.d.ts:60</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="identity" class="tsd-anchor"></a>
+					<h3>identity</h3>
+					<div class="tsd-signature tsd-kind-icon">identity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Component</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Controller.identity</p>
+						<ul>
+							<li>Defined in node_modules/coaty/controller/controller.d.ts:59</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="options" class="tsd-anchor"></a>
+					<h3>options</h3>
+					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ControllerOptions</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Controller.options</p>
+						<ul>
+							<li>Defined in node_modules/coaty/controller/controller.d.ts:58</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="registeredsensorcontainers" class="tsd-anchor"></a>
+					<h3>registered<wbr>Sensor<wbr>Containers</h3>
+					<div class="tsd-signature tsd-kind-icon">registered<wbr>Sensor<wbr>Containers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SensorContainer</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from SensorSourceController.registeredSensorContainers</p>
+						<ul>
+							<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:109</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Returns all the registered sensor containers in an array.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="registeredsensors" class="tsd-anchor"></a>
+					<h3>registered<wbr>Sensors</h3>
+					<div class="tsd-signature tsd-kind-icon">registered<wbr>Sensors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Sensor</span><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from SensorSourceController.registeredSensors</p>
+						<ul>
+							<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:113</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Returns all the registered Sensors in an array.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a name="runtime" class="tsd-anchor"></a>
+					<h3>runtime</h3>
+					<div class="tsd-signature tsd-kind-icon">runtime<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Runtime</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from Controller.runtime</p>
+						<ul>
+							<li>Defined in node_modules/coaty/controller/controller.d.ts:57</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<a name="createobservation" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Observation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Observation<span class="tsd-signature-symbol">(</span>container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SensorContainer</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, resultQuality<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, validTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">TimeInterval</span>, parameters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observation</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides SensorSourceController.createObservation</p>
+								<ul>
+									<li>Defined in src/opcua-sensor-things-controller.ts:241</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overwrite this method to define how Observation object should be created.</p>
+								</div>
+								<p>Do not call this method in your application code, it is called by this
+								controller internally.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>container: <span class="tsd-signature-type">SensorContainer</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Sensor container creating this observation</p>
+									</div>
+								</li>
+								<li>
+									<h5>value: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>value of the observation</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> resultQuality: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the quality of the result</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> validTime: <span class="tsd-signature-type">TimeInterval</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the validity time of the observation (optional)</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parameters: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>extra parameters for the observation (optional)</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-index-signature">
+											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></h5>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observation</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="extendlogobject" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> extend<wbr>Log<wbr>Object</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">extend<wbr>Log<wbr>Object<span class="tsd-signature-symbol">(</span>log<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Log</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from Controller.extendLogObject</p>
+								<ul>
+									<li>Defined in node_modules/coaty/controller/controller.d.ts:183</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Whenever one of the controller&#39;s log methods (e.g. <code>logDebug</code>, <code>logInfo</code>,
+										<code>logWarning</code>, <code>logError</code>, <code>logFatal</code>) is called by application code,
+										the controller creates a Log object with appropriate property values and
+										passes it to this method before advertising it. You can overwrite this method to
+										additionally set certain properties (such as LogHost.hostname) or to
+									add custom property-value pairs to the Log object.</p>
+								</div>
+								<p>Do not call this method in your application code, it is called by the framework.
+									You do not need to invoke <code>super</code> in the overwritten method; the base methods
+								does nothing.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>log: <span class="tsd-signature-type">Log</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>log object to be extended before being advertised</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="getchannelid" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Channel<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Channel<wbr>Id<span class="tsd-signature-symbol">(</span>container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SensorContainer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from SensorSourceController.getChannelId</p>
+								<ul>
+									<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:240</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the channelId associated with a sensor container. By
+										default, it is the objectId of the Sensor. Subclasses can override
+									this method to provide their own logic.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>container: <span class="tsd-signature-type">SensorContainer</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getsensor" class="tsd-anchor"></a>
+					<h3>get<wbr>Sensor</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Sensor<span class="tsd-signature-symbol">(</span>sensorId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uuid</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Sensor</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from SensorSourceController.getSensor</p>
+								<ul>
+									<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:128</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the Sensor associated with the given Sensor objectId.
+									If no such sensor exists then &#39;undefined&#39; is returned.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sensorId: <span class="tsd-signature-type">Uuid</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Sensor</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getsensorcontainer" class="tsd-anchor"></a>
+					<h3>get<wbr>Sensor<wbr>Container</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Sensor<wbr>Container<span class="tsd-signature-symbol">(</span>sensorId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uuid</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SensorContainer</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from SensorSourceController.getSensorContainer</p>
+								<ul>
+									<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:123</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the sensor container associated with the given Sensor objectId.
+									If no such container exists then &#39;undefined&#39; is returned.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sensorId: <span class="tsd-signature-type">Uuid</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">SensorContainer</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getsensorio" class="tsd-anchor"></a>
+					<h3>get<wbr>Sensor<wbr>Io</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Sensor<wbr>Io<span class="tsd-signature-symbol">(</span>sensorId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uuid</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SensorIo</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from SensorSourceController.getSensorIo</p>
+								<ul>
+									<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:133</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the sensor IO interface associated with the given Sensor objectId.
+									If no such sensor IO exists then &#39;undefined&#39; is returned.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sensorId: <span class="tsd-signature-type">Uuid</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">SensorIo</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="getsensorvalueobservable" class="tsd-anchor"></a>
+					<h3>get<wbr>Sensor<wbr>Value<wbr>Observable</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Sensor<wbr>Value<wbr>Observable<span class="tsd-signature-symbol">(</span>sensorId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uuid</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from SensorSourceController.getSensorValueObservable</p>
+								<ul>
+									<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:146</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns a hot observable that emits values read from the sensor. Only
+										the values read with publishChanneledObservation or
+										publishAdvertisedObservation will emit new values. Reading the sensor
+									value manually with SensorIo.read will not emit any new value.</p>
+								</div>
+								<p>The observable is created lazily and cached. Once the Sensor associated
+									with the observable is unregistered, all subscriptions to the observable
+								are also unsubscribed.</p>
+								<p>If the Sensor is not registered, this method will throw an error.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sensorId: <span class="tsd-signature-type">Uuid</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="initializeidentity" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> initialize<wbr>Identity</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">initialize<wbr>Identity<span class="tsd-signature-symbol">(</span>identity<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Component</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from Controller.initializeIdentity</p>
+								<ul>
+									<li>Defined in node_modules/coaty/controller/controller.d.ts:168</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Initialize identity object properties for a concrete controller subclass
+									based on the specified default identity object.</p>
+								</div>
+								<p>Do not call this method in your application code, it is called by the
+									framework. To retrieve the identity of a controller use
+								its <code>identity</code> getter.</p>
+								<p>You can overwrite this method to initalize the identity with a custom name
+									or additional application-specific properties. Alternatively, you can
+									set or add custom property-value pairs by specifying them in the <code>identity</code>
+									property of the controller configuration options <code>ControllerOptions</code>.
+									If you specify identity properties in both ways, the ones specified
+								in the configuration options take precedence.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>identity: <span class="tsd-signature-type">Component</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the default identity object for a controller instance</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="isregistered" class="tsd-anchor"></a>
+					<h3>is<wbr>Registered</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Registered<span class="tsd-signature-symbol">(</span>sensorId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uuid</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from SensorSourceController.isRegistered</p>
+								<ul>
+									<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:118</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Determines whether a Sensor with the given objectId is registered with
+									this controller.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sensorId: <span class="tsd-signature-type">Uuid</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="logdebug" class="tsd-anchor"></a>
+					<h3>log<wbr>Debug</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">log<wbr>Debug<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, <span class="tsd-signature-symbol">...</span>tags<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from Controller.logDebug</p>
+								<ul>
+									<li>Defined in node_modules/coaty/controller/controller.d.ts:67</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Advertise a Log object for debugging purposes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a debug message</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>tags: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an array of log tags</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="logerror" class="tsd-anchor"></a>
+					<h3>log<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">log<wbr>Error<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, <span class="tsd-signature-symbol">...</span>tags<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from Controller.logError</p>
+								<ul>
+									<li>Defined in node_modules/coaty/controller/controller.d.ts:89</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Advertise a Log object for an error.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>error: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an error (object)</p>
+									</div>
+								</li>
+								<li>
+									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional error message</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>tags: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an array of log tags</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="logerrorwithstacktrace" class="tsd-anchor"></a>
+					<h3>log<wbr>Error<wbr>With<wbr>Stacktrace</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">log<wbr>Error<wbr>With<wbr>Stacktrace<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, <span class="tsd-signature-symbol">...</span>tags<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from Controller.logErrorWithStacktrace</p>
+								<ul>
+									<li>Defined in node_modules/coaty/controller/controller.d.ts:97</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Advertise a Log object for an error with stacktrace information.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>error: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an error (object)</p>
+									</div>
+								</li>
+								<li>
+									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional error message</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>tags: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an array of log tags</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="logfatal" class="tsd-anchor"></a>
+					<h3>log<wbr>Fatal</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">log<wbr>Fatal<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, <span class="tsd-signature-symbol">...</span>tags<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from Controller.logFatal</p>
+								<ul>
+									<li>Defined in node_modules/coaty/controller/controller.d.ts:105</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Advertise a Log object for a fatal error.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>error: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an error (object)</p>
+									</div>
+								</li>
+								<li>
+									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional error message</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>tags: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an array of log tags</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="loginfo" class="tsd-anchor"></a>
+					<h3>log<wbr>Info</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">log<wbr>Info<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, <span class="tsd-signature-symbol">...</span>tags<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from Controller.logInfo</p>
+								<ul>
+									<li>Defined in node_modules/coaty/controller/controller.d.ts:74</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Advertise an informational Log object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an informational message</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>tags: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an array of log tags</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="logwarning" class="tsd-anchor"></a>
+					<h3>log<wbr>Warning</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">log<wbr>Warning<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, <span class="tsd-signature-symbol">...</span>tags<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from Controller.logWarning</p>
+								<ul>
+									<li>Defined in node_modules/coaty/controller/controller.d.ts:81</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Advertise a Log object for a warning.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>message: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a warning message</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>tags: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an array of log tags</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="oncommunicationmanagerstarting" class="tsd-anchor"></a>
+					<h3>on<wbr>Communication<wbr>Manager<wbr>Starting</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Communication<wbr>Manager<wbr>Starting<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides Controller.onCommunicationManagerStarting</p>
+								<ul>
+									<li>Defined in src/opcua-sensor-things-controller.ts:147</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="oncommunicationmanagerstopping" class="tsd-anchor"></a>
+					<h3>on<wbr>Communication<wbr>Manager<wbr>Stopping</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Communication<wbr>Manager<wbr>Stopping<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides SensorSourceController.onCommunicationManagerStopping</p>
+								<ul>
+									<li>Defined in src/opcua-sensor-things-controller.ts:157</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="oncontainerresolved" class="tsd-anchor"></a>
+					<h3>on<wbr>Container<wbr>Resolved</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Container<wbr>Resolved<span class="tsd-signature-symbol">(</span>container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Container</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from Controller.onContainerResolved</p>
+								<ul>
+									<li>Defined in node_modules/coaty/controller/controller.d.ts:126</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Called by the Coaty container after it has resolved and created all
+										controller instances within the container. Implement initialization side
+									effects here. The base implementation does nothing.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>container: <span class="tsd-signature-type">Container</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the Coaty container of this controller</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="ondispose" class="tsd-anchor"></a>
+					<h3>on<wbr>Dispose</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Dispose<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from Controller.onDispose</p>
+								<ul>
+									<li>Defined in node_modules/coaty/controller/controller.d.ts:150</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Called by the Coaty container when this instance should be disposed.
+									Implement cleanup side effects here. The base implementation does nothing.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="oninit" class="tsd-anchor"></a>
+					<h3>on<wbr>Init</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides SensorSourceController.onInit</p>
+								<ul>
+									<li>Defined in src/opcua-sensor-things-controller.ts:110</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="onobservationdidpublish" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> on<wbr>Observation<wbr>Did<wbr>Publish</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Observation<wbr>Did<wbr>Publish<span class="tsd-signature-symbol">(</span>container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SensorContainer</span>, observation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observation</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from SensorSourceController.onObservationDidPublish</p>
+								<ul>
+									<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:250</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Lifecycle method called immediately after an observation is published for
+									a specific Sensor. Default implementation does nothing.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>container: <span class="tsd-signature-type">SensorContainer</span></h5>
+								</li>
+								<li>
+									<h5>observation: <span class="tsd-signature-type">Observation</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+					<a name="onobservationwillpublish" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> on<wbr>Observation<wbr>Will<wbr>Publish</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Observation<wbr>Will<wbr>Publish<span class="tsd-signature-symbol">(</span>container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SensorContainer</span>, observation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observation</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from SensorSourceController.onObservationWillPublish</p>
+								<ul>
+									<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:245</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Lifecycle method called just before an observation is published for
+									a specific Sensor. Default implementation does nothing.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>container: <span class="tsd-signature-type">SensorContainer</span></h5>
+								</li>
+								<li>
+									<h5>observation: <span class="tsd-signature-type">Observation</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="publishadvertisedobservation" class="tsd-anchor"></a>
+					<h3>publish<wbr>Advertised<wbr>Observation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">publish<wbr>Advertised<wbr>Observation<span class="tsd-signature-symbol">(</span>sensorId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uuid</span>, resultQuality<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, validTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">TimeInterval</span>, parameters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span>, featureOfInterestId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Uuid</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from SensorSourceController.publishAdvertisedObservation</p>
+								<ul>
+									<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:219</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Publishes an observation for a registered Sensor. If no such registered
+										Sensor exists then an error is thrown. The publication is performed in the
+									form of an advertise event.</p>
+								</div>
+								<p>The observation value is read directly from the IO handler of the Sensor.
+									The observation time is recorded as this method is called. Subclasses can
+									change the final value of the observation object by overriding the
+								createObservation method.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sensorId: <span class="tsd-signature-type">Uuid</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>ObjectId of the Sensor to publish the observation.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> resultQuality: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The quality of the result. (optional)</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> validTime: <span class="tsd-signature-type">TimeInterval</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The validity time of the observation. (optional)</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parameters: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Extra parameters for the observation. (optional)</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-index-signature">
+											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> featureOfInterestId: <span class="tsd-signature-type">Uuid</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>UUID of associated feature of interest. (optional)</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="publishchanneledobservation" class="tsd-anchor"></a>
+					<h3>publish<wbr>Channeled<wbr>Observation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">publish<wbr>Channeled<wbr>Observation<span class="tsd-signature-symbol">(</span>sensorId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uuid</span>, resultQuality<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, validTime<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">TimeInterval</span>, parameters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span>, featureOfInterestId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Uuid</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from SensorSourceController.publishChanneledObservation</p>
+								<ul>
+									<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:201</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Publishes an observation for a registered Sensor. If no such registered
+										Sensor exists then an error is thrown. The publication is performed in the
+										form of a channel event. By default the channelId is the sensorId. However,
+									subclasses can change it by overriding getChannelId method.</p>
+								</div>
+								<p>The observation value is read directly from the IO handler of the Sensor.
+									The observation time is recorded as this method is called. Subclasses can
+									change the final value of the observation object by overriding the
+								createObservation method.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sensorId: <span class="tsd-signature-type">Uuid</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>ObjectId of the Sensor to publish the observation.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> resultQuality: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The quality of the result. (optional)</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> validTime: <span class="tsd-signature-type">TimeInterval</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The validity time of the observation. (optional)</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> parameters: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Extra parameters for the observation. (optional)</p>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-index-signature">
+											<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">any</span></h5>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> featureOfInterestId: <span class="tsd-signature-type">Uuid</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>UUID of associated feature of interest. (optional)</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+					<a name="registersensor" class="tsd-anchor"></a>
+					<h3>register<wbr>Sensor</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+						<li class="tsd-signature tsd-kind-icon">register<wbr>Sensor<span class="tsd-signature-symbol">(</span>sensor<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Sensor</span>, io<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SensorIo</span>, observationPublicationType<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">ObservationPublicationType</span>, samplingInterval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Overrides SensorSourceController.registerSensor</p>
+								<ul>
+									<li>Defined in src/opcua-sensor-things-controller.ts:220</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Register a Sensor to this controller.</p>
+								</div>
+								<p>You can call this function at runtime or register sensors automatically
+									at the beginning by passing them in the controller options under
+									&#39;sensors&#39; objects (see documentation of base class
+									<code>SensorSourceController</code>). In both cases, specify a sensor&#39;s io interface
+									to be of type <code>OpcuaSensorIo</code> and specify the
+								<code>observationPublicationType</code> property either as</p>
+								<ul>
+									<li><code>&quot;none&quot;</code>: an observation is published on a Channel event synchronously
+									with each received OPC UA data value (default),</li>
+									<li><code>&quot;advertise&quot;</code>: an observation is published on an Advertise event at
+									regular intervals specified by <code>samplingInterval</code>, or</li>
+									<li><code>&quot;channel&quot;</code>: an observation is published on a Channel event at regular
+									intervals specified by <code>samplingInterval</code>.</li>
+								</ul>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sensor: <span class="tsd-signature-type">Sensor</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a Sensor object</p>
+									</div>
+								</li>
+								<li>
+									<h5>io: <span class="tsd-signature-type">SensorIo</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the sensor&#39;s io interface</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> observationPublicationType: <span class="tsd-signature-type">ObservationPublicationType</span><span class="tsd-signature-symbol"> =&nbsp;&quot;none&quot;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>how to publish sensor observations, one
+										of &quot;none&quot;, &quot;advertise&quot;, &quot;channel&quot; (optional)</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> samplingInterval: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>regular publication interval in milliseconds
+										(optional)</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="registerthing" class="tsd-anchor"></a>
+					<h3>register<wbr>Thing</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">register<wbr>Thing<span class="tsd-signature-symbol">(</span>thing<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Thing</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/opcua-sensor-things-controller.ts:182</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Registers a Thing to this controller.</p>
+								</div>
+								<p>You can call this function at runtime or register things automatically at
+									the beginning by passing them in the controller options under &#39;things&#39; as
+								an array of Thing objects.</p>
+								<p>If a Thing with the given objectId already exists, this method is simply
+								ignored.</p>
+								<p>Whenever a thing is registered, it is advertised to notify other
+									listeners (unless <code>ignoreThingAdvertise</code> option is set). The controller
+									class also starts to listen on Discover events for Things (unless
+									<code>skipThingDiscoverEvents</code> option is set). Registered things are
+									discoverable either by their Thing object type or by their Thing object
+								type <em>and</em> their external ID.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>thing: <span class="tsd-signature-type">Thing</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Thing to register to the controller.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+					<a name="traceopcuaerror" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> trace<wbr>Opcua<wbr>Error</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+						<li class="tsd-signature tsd-kind-icon">trace<wbr>Opcua<wbr>Error<span class="tsd-signature-symbol">(</span>error<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/opcua-sensor-things-controller.ts:269</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Overwrite this method to define how internal OPC UA errors within this
+									controller should be traced.</p>
+								</div>
+								<p>By default, OPC UA errors are logged on the console.</p>
+								<p>Do not call this method in your application code, it is called by this
+								controller internally.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>error: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>an OPC UA error</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="unregistersensor" class="tsd-anchor"></a>
+					<h3>unregister<wbr>Sensor</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">unregister<wbr>Sensor<span class="tsd-signature-symbol">(</span>sensorId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Uuid</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Error</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from SensorSourceController.unregisterSensor</p>
+								<ul>
+									<li>Defined in node_modules/coaty/sensor-things/sensor-source-controller.d.ts:184</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Unregisters a previously registered Sensor. If no such Sensor is
+									registered, then an error is thrown.</p>
+								</div>
+								<p>This also sends a disadvertise event to notify the listeners (unless
+									ignoreSensorDeadvertise option is set). The query and discover events
+								for this Sensor are ignored from this point on.</p>
+								<p>If a value observable for the Sensor exists, then all subscriptions
+								to that observable are unsubscribed.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sensorId: <span class="tsd-signature-type">Uuid</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Error</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="opcuaconnector.html" class="tsd-kind-icon">Opcua<wbr>Connector</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="opcuaioactorcontroller.html" class="tsd-kind-icon">Opcua<wbr>IoActor<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="opcuaiosourcecontroller.html" class="tsd-kind-icon">Opcua<wbr>IoSource<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="opcuamqttcontroller.html" class="tsd-kind-icon">Opcua<wbr>Mqtt<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="opcuaremoteoperationcontroller.html" class="tsd-kind-icon">Opcua<wbr>Remote<wbr>Operation<wbr>Controller</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="opcuasensorio.html" class="tsd-kind-icon">Opcua<wbr>Sensor<wbr>Io</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class">
+						<a href="opcuasensorthingscontroller.html" class="tsd-kind-icon">Opcua<wbr>Sensor<wbr>Things<wbr>Controller</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#communicationmanager" class="tsd-kind-icon">communication<wbr>Manager</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#identity" class="tsd-kind-icon">identity</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#options" class="tsd-kind-icon">options</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#registeredsensorcontainers" class="tsd-kind-icon">registered<wbr>Sensor<wbr>Containers</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#registeredsensors" class="tsd-kind-icon">registered<wbr>Sensors</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#runtime" class="tsd-kind-icon">runtime</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+								<a href="opcuasensorthingscontroller.html#createobservation" class="tsd-kind-icon">create<wbr>Observation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="opcuasensorthingscontroller.html#extendlogobject" class="tsd-kind-icon">extend<wbr>Log<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="opcuasensorthingscontroller.html#getchannelid" class="tsd-kind-icon">get<wbr>Channel<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#getsensor" class="tsd-kind-icon">get<wbr>Sensor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#getsensorcontainer" class="tsd-kind-icon">get<wbr>Sensor<wbr>Container</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#getsensorio" class="tsd-kind-icon">get<wbr>Sensor<wbr>Io</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#getsensorvalueobservable" class="tsd-kind-icon">get<wbr>Sensor<wbr>Value<wbr>Observable</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="opcuasensorthingscontroller.html#initializeidentity" class="tsd-kind-icon">initialize<wbr>Identity</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#isregistered" class="tsd-kind-icon">is<wbr>Registered</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#logdebug" class="tsd-kind-icon">log<wbr>Debug</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#logerror" class="tsd-kind-icon">log<wbr>Error</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#logerrorwithstacktrace" class="tsd-kind-icon">log<wbr>Error<wbr>With<wbr>Stacktrace</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#logfatal" class="tsd-kind-icon">log<wbr>Fatal</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#loginfo" class="tsd-kind-icon">log<wbr>Info</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#logwarning" class="tsd-kind-icon">log<wbr>Warning</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="opcuasensorthingscontroller.html#oncommunicationmanagerstarting" class="tsd-kind-icon">on<wbr>Communication<wbr>Manager<wbr>Starting</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="opcuasensorthingscontroller.html#oncommunicationmanagerstopping" class="tsd-kind-icon">on<wbr>Communication<wbr>Manager<wbr>Stopping</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#oncontainerresolved" class="tsd-kind-icon">on<wbr>Container<wbr>Resolved</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#ondispose" class="tsd-kind-icon">on<wbr>Dispose</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="opcuasensorthingscontroller.html#oninit" class="tsd-kind-icon">on<wbr>Init</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="opcuasensorthingscontroller.html#onobservationdidpublish" class="tsd-kind-icon">on<wbr>Observation<wbr>Did<wbr>Publish</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
+								<a href="opcuasensorthingscontroller.html#onobservationwillpublish" class="tsd-kind-icon">on<wbr>Observation<wbr>Will<wbr>Publish</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#publishadvertisedobservation" class="tsd-kind-icon">publish<wbr>Advertised<wbr>Observation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#publishchanneledobservation" class="tsd-kind-icon">publish<wbr>Channeled<wbr>Observation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
+								<a href="opcuasensorthingscontroller.html#registersensor" class="tsd-kind-icon">register<wbr>Sensor</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="opcuasensorthingscontroller.html#registerthing" class="tsd-kind-icon">register<wbr>Thing</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
+								<a href="opcuasensorthingscontroller.html#traceopcuaerror" class="tsd-kind-icon">trace<wbr>Opcua<wbr>Error</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="opcuasensorthingscontroller.html#unregistersensor" class="tsd-kind-icon">unregister<wbr>Sensor</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuaanalogdataitem.html" class="tsd-kind-icon">Opcua<wbr>Analog<wbr>Data<wbr>Item</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuacallreturnmapping.html" class="tsd-kind-icon">Opcua<wbr>Call<wbr>Return<wbr>Mapping</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuadatasource.html" class="tsd-kind-icon">Opcua<wbr>Data<wbr>Source</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuaeuinformation.html" class="tsd-kind-icon">Opcua<wbr>EuInformation</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuainputargumentmapping.html" class="tsd-kind-icon">Opcua<wbr>Input<wbr>Argument<wbr>Mapping</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuaioactoroptions.html" class="tsd-kind-icon">Opcua<wbr>IoActor<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuaiosourceoptions.html" class="tsd-kind-icon">Opcua<wbr>IoSource<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuamqttoptions.html" class="tsd-kind-icon">Opcua<wbr>Mqtt<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuanodeidentifier.html" class="tsd-kind-icon">Opcua<wbr>Node<wbr>Identifier</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuaoptions.html" class="tsd-kind-icon">Opcua<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuaremoteoperationoptions.html" class="tsd-kind-icon">Opcua<wbr>Remote<wbr>Operation<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/opcuasensoroptions.html" class="tsd-kind-icon">Opcua<wbr>Sensor<wbr>Options</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
