@@ -19,7 +19,7 @@
     "private": true,
     "dependencies": {
         "coaty": "^1.11.1",
-		"coaty-opcua": "^1.0.0",
+        "coaty-opcua": "^1.0.0",
         "node-opcua-client": "^2.4.0",
         "node-opcua-server": "^2.4.1",
         "opcua-commander": "^0.7.1",
