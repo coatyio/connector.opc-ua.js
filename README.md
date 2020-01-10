@@ -16,7 +16,7 @@
 ## Introduction
 
 The Coaty JS OPC UA connector seamlessly connects decentralized
-[Coaty](https://coaty.io) applications to [OPC UA](https://opcfoundation.org/)
+[Coaty](https://coaty.io) applications with [OPC UA](https://opcfoundation.org/)
 servers. It provides specialized controllers to transform OPC UA data sources
 into Coaty Sensor Things, IO routing sources/actors, and raw MQTT messages, and
 to map Coaty remote operation calls to OPC UA method calls.
