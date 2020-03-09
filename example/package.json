@@ -1,7 +1,7 @@
 {
     "name": "coaty-opcua-example",
-    "version": "1.0.0",
-    "description": "Example on connecting Coaty JS to OPC UA",
+    "version": "2.0.0",
+    "description": "Example on using the Coaty JS OPC UA Connector",
     "scripts": {
         "build": "gulp build",
         "lint": "gulp lint",
@@ -18,21 +18,21 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "coaty": "^1.11.1",
-        "coaty-opcua": "^1.0.0",
-        "node-opcua-client": "^2.4.0",
-        "node-opcua-server": "^2.4.1",
+        "@coaty/core": "^2.0.0",
+        "@coaty/connector.opcua": "^2.0.0",
+        "node-opcua-client": "^2.4.4",
+        "node-opcua-server": "^2.4.4",
         "opcua-commander": "^0.7.1",
-        "rxjs": "6.4.0"
+        "rxjs": "^6.5.4"
     },
     "devDependencies": {
-        "@types/node": "12.0.0",
-        "fs-extra": "8.0.1",
-        "gulp": "4.0.0",
-        "gulp-sourcemaps": "2.6.5",
-        "gulp-tslint": "8.1.4",
-        "gulp-typescript": "5.0.1",
-        "tslint": "5.15.0",
-        "typescript": "3.4.1"
+        "@types/node": "^13.9.0",
+        "fs-extra": "^8.1.0",
+        "gulp": "^4.0.2",
+        "gulp-sourcemaps": "^2.6.5",
+        "gulp-tslint": "^8.1.4",
+        "gulp-typescript": "^5.0.1",
+        "tslint": "^5.20.1",
+        "typescript": "^3.8.3"
     }
 }

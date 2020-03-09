@@ -1,7 +1,7 @@
 /*! Copyright (c) 2020 Siemens AG. Licensed under the MIT License. */
 
-import { Controller } from "coaty/controller";
-import { NodeUtils } from "coaty/runtime-node";
+import { Controller } from "@coaty/core";
+import { NodeUtils } from "@coaty/core/runtime-node";
 
 import { filter } from "rxjs/operators";
 
@@ -14,7 +14,7 @@ export class MqttConsumerController extends Controller {
     onCommunicationManagerStarting() {
         super.onCommunicationManagerStarting();
 
-        this.communicationManager.observeRaw(this.identity, "opcua/#")
+        this.communicationManager.observeRaw("opcua/#")
             .pipe(filter(([topic]) => topic.startsWith("opcua/")))
             .subscribe(([topic, payload]) =>
                 NodeUtils.logInfo(`Raw MQTT topic ${topic} with payload ${JSON.parse(payload.toString())}`));

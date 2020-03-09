@@ -1,5 +1,5 @@
 {
-    "name": "coaty-opcua",
+    "name": "@coaty/connector.opcua",
     "version": "1.0.0",
     "description": "Coaty JS OPC UA connector for Node.js",
     "homepage": "https://coaty.io",
@@ -21,7 +21,7 @@
         "publish-release": "coaty-scripts publish-release"
     },
     "keywords": [
-        "coaty",
+        "Coaty",
         "connector",
         "OPC UA",
         "Node.js",
@@ -44,22 +44,22 @@
         "url": "https://github.com/coatyio/connector.opc-ua.js/issues"
     },
     "dependencies": {
-        "coaty": "^1.11.1",
-        "node-opcua-client": "^2.4.0",
-        "rxjs": "^6.4.0"
+        "@coaty/core": "^2.0.0",
+        "node-opcua-client": "^2.4.4",
+        "rxjs": "^6.5.4"
     },
     "devDependencies": {
-        "@types/node": "12.0.0",
-        "conventional-changelog": "3.1.8",
-        "conventional-recommended-bump": "5.0.0",
-        "fs-extra": "8.0.1",
-        "gulp": "4.0.0",
-        "gulp-tslint": "8.1.4",
-        "gulp-typedoc": "^2.2.3",
-        "gulp-typescript": "5.0.1",
-        "tslint": "5.15.0",
-        "typedoc": "0.15.7",
-        "typescript": "3.4.1"
+        "@types/node": "^13.9.0",
+        "conventional-changelog": "^3.1.19",
+        "conventional-recommended-bump": "^6.0.5",
+        "fs-extra": "^8.1.0",
+        "gulp": "^4.0.2",
+        "gulp-tslint": "^8.1.4",
+        "gulp-typedoc": "^2.2.4",
+        "gulp-typescript": "^5.0.1",
+        "tslint": "^5.20.1",
+        "typedoc": "^0.16.11",
+        "typescript": "^3.8.3"
     },
     "engines": {
         "node": ">=8.0.0"

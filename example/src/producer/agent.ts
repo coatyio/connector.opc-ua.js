@@ -1,10 +1,16 @@
 /*! Copyright (c) 2020 Siemens AG. Licensed under the MIT License. */
 
-import { BasicIoRouter } from "coaty/io";
-import { CoreTypes, Device, DisplayType, User } from "coaty/model";
-import { Components, Configuration, Container, Runtime } from "coaty/runtime";
-import { NodeUtils } from "coaty/runtime-node";
-import { EncodingTypes, ObservationTypes, Sensor, SensorDefinition, SensorThingsTypes, Thing } from "coaty/sensor-things";
+import { Components, Configuration, Container, CoreTypes, IoContext, Runtime } from "@coaty/core";
+import { BasicIoRouter } from "@coaty/core/io-routing";
+import { NodeUtils } from "@coaty/core/runtime-node";
+import {
+    EncodingTypes,
+    ObservationTypes,
+    Sensor,
+    SensorDefinition,
+    SensorThingsTypes,
+    Thing,
+} from "@coaty/core/sensor-things";
 
 import {
     OpcuaIoActorController,
@@ -19,7 +25,7 @@ import {
     OpcuaSensorIo,
     OpcuaSensorOptions,
     OpcuaSensorThingsController,
-} from "coaty-opcua";
+} from "@coaty/connector.opcua";
 
 import { agentInfo } from "./agent.info";
 
@@ -136,24 +142,6 @@ const opcuaIoActorOptions: OpcuaIoActorOptions = {
             valueType: "plc.Tag1[Int32]",
         },
     },
-};
-
-const user: User = {
-    objectId: "d8476053-fa52-4c3f-8a6c-40e4c2512ef1",
-    coreType: "User",
-    objectType: CoreTypes.OBJECT_TYPE_USER,
-    name: "user@coaty.io",
-    names: { formatted: "Common User for IO Routing" },
-};
-
-const opcuaDev: Device = {
-    objectId: Runtime.newUuid(),
-    objectType: CoreTypes.OBJECT_TYPE_DEVICE,
-    coreType: "Device",
-    name: "Producer Device",
-    displayType: DisplayType.None,
-    ioCapabilities: Object.values({ ...opcuaIoSourceOptions.ioSources, ...opcuaIoActorOptions.ioActors }),
-    assigneeUserId: user.objectId,
 };
 
 /* Options for OpcuaMqttController */
@@ -295,6 +283,10 @@ const opcuaRemoteOperationOptions: OpcuaRemoteOperationOptions = {
                         parameter: "isTooLow",
                         dataType: "Boolean",
                     },
+                    {
+                        parameter: "isTooHigh",
+                        dataType: "Boolean",
+                    },
                 ],
             },
         },
@@ -317,16 +309,26 @@ const components: Components = {
 const configuration: Configuration = {
     common: {
         agentInfo,
-        associatedUser: user,
-        associatedDevice: opcuaDev,
+        agentIdentity: { name: "Producer-Agent" },
+        ioContextNodes: {
+            "Producer-Consumer-Context": {
+                ioSources: Object.values(opcuaIoSourceOptions.ioSources),
+                ioActors: Object.values(opcuaIoActorOptions.ioActors),
+            },
+        },
     },
     communication: {
         brokerUrl: "mqtt://localhost:1883",
-        identity: { name: "Producer-Agent" },
         shouldAutoStart: true,
     },
     controllers: {
         BasicIoRouter: {
+            ioContext: {
+                name: "Producer-Consumer-Context",
+                coreType: "IoContext",
+                objectType: CoreTypes.OBJECT_TYPE_IO_CONTEXT,
+                objectId: Runtime.newUuid(),
+            } as IoContext,
         },
         OpcuaIoSourceController: {
             opcuaIoSourceOptions,

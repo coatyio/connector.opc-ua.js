@@ -32,8 +32,8 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots or error stack traces to help explain your problem.
 
 **Your Environment (please complete the following information):**
-- Name and version of affected Coaty connector: [e.g. coaty-opcua@1.0.0]
-- Coaty Version: [e.g. 1.5.2]
+- Name and version of affected Coaty connector: [e.g. @coaty/connector.opcua@2.0.0]
+- Coaty Version: [e.g. 2.0.0]
 - Node.js Version: [e.g. 12.14.1]
 - OS: [e.g. Windows 10]
 

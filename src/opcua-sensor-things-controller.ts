@@ -1,10 +1,7 @@
 /*! Copyright (c) 2020 Siemens AG. Licensed under the MIT License. */
 
-import { Subscription } from "rxjs";
-
-import { AdvertiseEvent, ResolveEvent } from "coaty/com";
-import { Uuid } from "coaty/model";
-import { NodeUtils } from "coaty/runtime-node";
+import { AdvertiseEvent, ResolveEvent, TimeInterval, Uuid } from "@coaty/core";
+import { NodeUtils } from "@coaty/core/runtime-node";
 import {
     MockSensorIo,
     Observation,
@@ -15,8 +12,7 @@ import {
     SensorSourceController,
     SensorThingsTypes,
     Thing,
-} from "coaty/sensor-things";
-import { TimeInterval } from "coaty/util";
+} from "@coaty/core/sensor-things";
 
 import { OpcuaConnector, OpcuaDataSource, OpcuaOptions } from "./opcua-connector";
 
@@ -104,7 +100,6 @@ export class OpcuaSensorThingsController extends SensorSourceController {
 
     private _things = new Map<Uuid, Thing>();
     private _sensorObservationTypes = new Map<Uuid, ObservationPublicationType>();
-    private _discoverThingSubscription: Subscription;
     private _opcuaConnector: OpcuaConnector;
 
     onInit() {
@@ -148,16 +143,19 @@ export class OpcuaSensorThingsController extends SensorSourceController {
         super.onCommunicationManagerStarting();
 
         if (!this.options.skipThingDiscoverEvents) {
-            this._discoverThingSubscription = this._observeDiscoverThing();
+            this._observeDiscoverThing();
         }
 
-        this._opcuaConnector && this._opcuaConnector.connect();
+        this._opcuaConnector?.connect();
     }
 
     onCommunicationManagerStopping() {
         super.onCommunicationManagerStopping();
-        this._opcuaConnector && this._opcuaConnector.disconnect();
-        this._discoverThingSubscription && this._discoverThingSubscription.unsubscribe();
+        this._opcuaConnector?.disconnect();
+    }
+
+    onDispose() {
+        this._opcuaConnector?.removeAllListeners();
     }
 
     /**
@@ -185,12 +183,12 @@ export class OpcuaSensorThingsController extends SensorSourceController {
         }
         if (thing.parentObjectId === undefined) {
             // Enables clean up of thing and its sensors by last-will Deadvertise identity event.
-            thing.parentObjectId = this.communicationManager.identity.objectId;
+            thing.parentObjectId = this.container.identity.objectId;
         }
         this._things.set(thing.objectId, thing);
 
         if (!this.options.ignoreThingAdvertise) {
-            this.communicationManager.publishAdvertise(AdvertiseEvent.withObject(this.identity, thing));
+            this.communicationManager.publishAdvertise(AdvertiseEvent.withObject(thing));
         }
     }
 
@@ -271,24 +269,22 @@ export class OpcuaSensorThingsController extends SensorSourceController {
     }
 
     private _observeDiscoverThing() {
-        return this.communicationManager.observeDiscover(this.identity)
+        this.communicationManager.observeDiscover()
             .subscribe(event => {
-                if (event.eventData.isObjectTypeCompatible(SensorThingsTypes.OBJECT_TYPE_THING)) {
+                if (event.data.isObjectTypeCompatible(SensorThingsTypes.OBJECT_TYPE_THING)) {
                     this._things.forEach(thing => {
-                        if (event.eventData.isDiscoveringExternalId && thing.externalId !== event.eventData.externalId) {
+                        if (event.data.isDiscoveringExternalId && thing.externalId !== event.data.externalId) {
                             return;
                         }
-
-                        if (event.eventData.isObjectTypeCompatible(SensorThingsTypes.OBJECT_TYPE_SENSOR)) {
+                        if (event.data.isObjectTypeCompatible(SensorThingsTypes.OBJECT_TYPE_SENSOR)) {
                             // Resolve Thing object with associated sensors as related objects.
                             event.resolve(ResolveEvent.withObject(
-                                this.identity,
                                 thing,
                                 this.registeredSensors.filter(s => s.parentObjectId === thing.objectId)),
                             );
                         } else {
                             // Resolve Thing without associated sensors.
-                            event.resolve(ResolveEvent.withObject(this.identity, thing));
+                            event.resolve(ResolveEvent.withObject(thing));
                         }
                     });
                 }

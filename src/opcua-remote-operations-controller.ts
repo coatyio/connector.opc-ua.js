@@ -1,14 +1,9 @@
 /*! Copyright (c) 2020 Siemens AG. Licensed under the MIT License. */
 
-import { Subject } from "rxjs";
-import { takeUntil } from "rxjs/operators";
-
 import { DataType } from "node-opcua-client";
 
-import { CallEventData, RemoteCallErrorCode, RemoteCallErrorMessage, ReturnEvent } from "coaty/com";
-import { Controller } from "coaty/controller";
-import { CoatyObject } from "coaty/model";
-import { NodeUtils } from "coaty/runtime-node";
+import { CallEventData, CoatyObject, Controller, RemoteCallErrorCode, RemoteCallErrorMessage, ReturnEvent } from "@coaty/core";
+import { NodeUtils } from "@coaty/core/runtime-node";
 
 import { OpcuaConnector, OpcuaOptions } from "./opcua-connector";
 
@@ -150,6 +145,10 @@ export interface OpcuaCallReturnMapping {
  *                          parameter: "isTooLow",
  *                          dataType: "Boolean",
  *                      },
+ *                      {
+ *                          parameter: "isTooHigh",
+ *                          dataType: "Boolean",
+ *                      },
  *                  ],
  *              },
  *          },
@@ -196,7 +195,6 @@ export interface OpcuaRemoteOperationOptions extends OpcuaOptions {
 export class OpcuaRemoteOperationController extends Controller {
 
     private _opcuaConnector: OpcuaConnector;
-    private _stopped$ = new Subject();
 
     onInit() {
         super.onInit();
@@ -221,19 +219,14 @@ export class OpcuaRemoteOperationController extends Controller {
                             return;
                         }
                         this.communicationManager.observeCall(
-                            this.identity,
                             callReturnMapping.operation,
                             this.getOperationContextFor(callReturnMapping))
-                            .pipe(
-                                takeUntil(this._stopped$),
-                            )
                             .subscribe(event => {
                                 let opcuaInputArgs;
                                 try {
-                                    opcuaInputArgs = this._createOpcuaInputArgs(event.eventData, callReturnMapping.inputArguments);
+                                    opcuaInputArgs = this._createOpcuaInputArgs(event.data, callReturnMapping.inputArguments);
                                 } catch (error) {
                                     event.returnEvent(ReturnEvent.withError(
-                                        this.identity,
                                         RemoteCallErrorCode.InvalidParameters,
                                         RemoteCallErrorMessage.InvalidParameters));
                                     return;
@@ -241,14 +234,10 @@ export class OpcuaRemoteOperationController extends Controller {
                                 this._opcuaConnector.call(objectDataSource, methodDataSource, opcuaInputArgs)
                                     .then(resultValues => {
                                         event.returnEvent(ReturnEvent.withResult(
-                                            this.identity,
                                             this._coerceOutputArguments(resultValues, callReturnMapping)));
                                     })
                                     .catch(error => {
-                                        event.returnEvent(ReturnEvent.withError(
-                                            this.identity,
-                                            1,
-                                            "Bad OPC UA method call"));
+                                        event.returnEvent(ReturnEvent.withError(1, "Bad OPC UA method call"));
                                     });
                             });
                     });
@@ -258,14 +247,16 @@ export class OpcuaRemoteOperationController extends Controller {
 
     onCommunicationManagerStarting() {
         super.onCommunicationManagerStarting();
-        this._opcuaConnector && this._opcuaConnector.connect();
+        this._opcuaConnector?.connect();
     }
 
     onCommunicationManagerStopping() {
         super.onCommunicationManagerStopping();
-        this._stopped$.next();
-        this._stopped$.complete();
-        this._opcuaConnector && this._opcuaConnector.disconnect();
+        this._opcuaConnector?.disconnect();
+    }
+
+    onDispose() {
+        this._opcuaConnector?.removeAllListeners();
     }
 
     /**

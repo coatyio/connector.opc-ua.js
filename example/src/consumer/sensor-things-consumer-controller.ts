@@ -3,9 +3,9 @@
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 
-import { CallEvent } from "coaty/com";
-import { NodeUtils } from "coaty/runtime-node";
-import { ThingSensorObservationObserverController } from "coaty/sensor-things";
+import { CallEvent } from "@coaty/core";
+import { NodeUtils } from "@coaty/core/runtime-node";
+import { ThingSensorObservationObserverController } from "@coaty/core/sensor-things";
 
 /**
  * Consumes SensorThings observations published by an OPC UA connected producer
@@ -47,19 +47,15 @@ export class SensorThingsConsumerController extends ThingSensorObservationObserv
                     if (isTooLow || isTooHigh) {
                         this.communicationManager.publishCall(
                             CallEvent.with(
-                                this.identity,
                                 "com.mydomain.alertTemperature",
-                                { temp: obs.result, isTooLow }))
-                            .pipe(
-                                takeUntil(this._stopped$),
-                            )
+                                { temp: obs.result, isTooLow, isTooHigh }))
                             .subscribe(returnEvent => {
-                                if (returnEvent.eventData.isError) {
+                                if (returnEvent.data.isError) {
                                     // tslint:disable-next-line: max-line-length
-                                    NodeUtils.logInfo(`Remote operation "alertTemperature" returned error: ${returnEvent.eventData.error.message}`);
+                                    NodeUtils.logInfo(`Remote operation "alertTemperature" returned error: ${returnEvent.data.error.message}`);
                                 } else {
                                     // tslint:disable-next-line: max-line-length
-                                    NodeUtils.logInfo(`Remote operation "alertTemperature" returned confirmation: ${returnEvent.eventData.result}`);
+                                    NodeUtils.logInfo(`Remote operation "alertTemperature" returned confirmation: ${returnEvent.data.result}`);
                                 }
                             });
                     }

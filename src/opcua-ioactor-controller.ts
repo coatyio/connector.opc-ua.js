@@ -3,9 +3,9 @@
 import { Subject } from "rxjs";
 import { filter, takeUntil } from "rxjs/operators";
 
-import { IoActorController } from "coaty/io";
-import { IoActor } from "coaty/model";
-import { NodeUtils } from "coaty/runtime-node";
+import { IoActor } from "@coaty/core";
+import { IoActorController } from "@coaty/core/io-routing";
+import { NodeUtils } from "@coaty/core/runtime-node";
 
 import { OpcuaConnector, OpcuaDataSource, OpcuaOptions } from "./opcua-connector";
 
@@ -104,14 +104,18 @@ export class OpcuaIoActorController extends IoActorController {
 
     onCommunicationManagerStarting() {
         super.onCommunicationManagerStarting();
-        this._opcuaConnector && this._opcuaConnector.connect();
+        this._opcuaConnector?.connect();
     }
 
     onCommunicationManagerStopping() {
         super.onCommunicationManagerStopping();
         this._stopped$.next();
         this._stopped$.complete();
-        this._opcuaConnector && this._opcuaConnector.disconnect();
+        this._opcuaConnector?.disconnect();
+    }
+
+    onDispose() {
+        this._opcuaConnector?.removeAllListeners();
     }
 
     /**

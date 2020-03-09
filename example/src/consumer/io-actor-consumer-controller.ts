@@ -2,9 +2,8 @@
 
 import { filter } from "rxjs/operators";
 
-import { IoActorController } from "coaty/io";
-import { CoreTypes, IoActor } from "coaty/model";
-import { NodeUtils } from "coaty/runtime-node";
+import { IoActorController } from "@coaty/core/io-routing";
+import { NodeUtils } from "@coaty/core/runtime-node";
 
 /**
  * Consumes IO values published by an OPC UA connected producer agent and logs
@@ -15,12 +14,10 @@ export class IoActorConsumerController extends IoActorController {
     onCommunicationManagerStarting() {
         super.onCommunicationManagerStarting();
 
-        this.runtime.options.associatedDevice.ioCapabilities.forEach(io => {
-            if (io.objectType === CoreTypes.OBJECT_TYPE_IO_ACTOR) {
-                this.observeIoValue<any>(io as IoActor)
-                    .pipe(filter(dataValue => dataValue !== undefined))
-                    .subscribe(dataValue => NodeUtils.logInfo(`IoActor ${io.name} with value ${dataValue}`));
-            }
+        this.communicationManager.getIoNodeByContext("Producer-Consumer-Context").ioActors.forEach(actor => {
+            this.observeIoValue<any>(actor)
+                .pipe(filter(dataValue => dataValue !== undefined))
+                .subscribe(dataValue => NodeUtils.logInfo(`IoActor ${actor.name} with value ${dataValue}`));
         });
     }
 

@@ -94,18 +94,13 @@ gulp.task("lint:fix", () => {
  * Generate TypeDoc HTML documentation
  */
 gulp.task("doc", () => {
-    const pkg = require(path.resolve(process.cwd(), "./package.json"));
-    const typescriptOptions = require(path.resolve("./tsconfig.json")).compilerOptions;
     const typedocOptions = require(path.resolve("./typedoc.js"));
-
-    // Add version number to header of generated HTML documentation
-    typedocOptions.name = pkg.name + " v" + pkg.version;
 
     fsextra.emptyDirSync(typedocOptions.out);
 
     return gulp
         .src(["src/**/*.ts"])
-        .pipe(typedoc(Object.assign(typedocOptions, typescriptOptions)));
+        .pipe(typedoc(Object.assign(typedocOptions)));
 });
 
 gulp.task("build", gulp.series("clean", "transpile:ts", "transpile:dts", "copy:assets", "lint"));

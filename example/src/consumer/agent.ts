@@ -1,8 +1,7 @@
 /*! Copyright (c) 2020 Siemens AG. Licensed under the MIT License. */
 
-import { CoreTypes, Device, DisplayType, IoActor, User } from "coaty/model";
-import { Components, Configuration, Container, Runtime } from "coaty/runtime";
-import { NodeUtils } from "coaty/runtime-node";
+import { Components, Configuration, Container, CoreTypes, IoActor, Runtime } from "@coaty/core";
+import { NodeUtils } from "@coaty/core/runtime-node";
 
 import { agentInfo } from "./agent.info";
 
@@ -36,24 +35,6 @@ const ioActors: IoActor[] = [
     },
 ];
 
-const user: User = {
-    objectId: "d8476053-fa52-4c3f-8a6c-40e4c2512ef1",
-    coreType: "User",
-    objectType: CoreTypes.OBJECT_TYPE_USER,
-    name: "user@coaty.io",
-    names: { formatted: "Common User for IO Routing" },
-};
-
-const consoleDev: Device = {
-    objectId: Runtime.newUuid(),
-    objectType: CoreTypes.OBJECT_TYPE_DEVICE,
-    coreType: "Device",
-    name: "Consumer Device",
-    displayType: DisplayType.Monitor,
-    ioCapabilities: ioActors,
-    assigneeUserId: user.objectId,
-};
-
 /* Consumer agent components and configuration */
 
 const components: Components = {
@@ -67,12 +48,15 @@ const components: Components = {
 const configuration: Configuration = {
     common: {
         agentInfo,
-        associatedUser: user,
-        associatedDevice: consoleDev,
+        agentIdentity: { name: "Consumer-Agent" },
+        ioContextNodes: {
+            "Producer-Consumer-Context": {
+                ioActors: ioActors,
+            },
+        },
     },
     communication: {
         brokerUrl: "mqtt://localhost:1883",
-        identity: { name: "Consumer-Agent" },
         shouldAutoStart: true,
     },
 };

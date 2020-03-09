@@ -1,8 +1,8 @@
 /*! Copyright (c) 2020 Siemens AG. Licensed under the MIT License. */
 
-import { IoSourceController } from "coaty/io";
-import { IoSource } from "coaty/model";
-import { NodeUtils } from "coaty/runtime-node";
+import { IoSource } from "@coaty/core";
+import { IoSourceController } from "@coaty/core/io-routing";
+import { NodeUtils } from "@coaty/core/runtime-node";
 
 import { OpcuaConnector, OpcuaDataSource, OpcuaOptions } from "./opcua-connector";
 
@@ -90,12 +90,16 @@ export class OpcuaIoSourceController extends IoSourceController {
 
     onCommunicationManagerStarting() {
         super.onCommunicationManagerStarting();
-        this._opcuaConnector && this._opcuaConnector.connect();
+        this._opcuaConnector?.connect();
     }
 
     onCommunicationManagerStopping() {
         super.onCommunicationManagerStopping();
-        this._opcuaConnector && this._opcuaConnector.disconnect();
+        this._opcuaConnector?.disconnect();
+    }
+
+    onDispose() {
+        this._opcuaConnector?.removeAllListeners();
     }
 
     /**

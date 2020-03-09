@@ -1,9 +1,10 @@
 # Coaty JS - OPC UA Connector
 
-[![Powered by Coaty](https://img.shields.io/badge/Powered%20by-Coaty-FF8C00.svg)](https://coaty.io)
+[![Powered by Coaty 2](https://img.shields.io/badge/Powered%20by-Coaty%202-FF8C00.svg)](https://coaty.io)
+[![TypeScript](https://img.shields.io/badge/Source%20code-TypeScript-007ACC.svg)](http://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![release](https://img.shields.io/badge/release-Conventional%20Commits-yellow.svg)](https://conventionalcommits.org/)
-[![npm version](https://badge.fury.io/js/coaty-opcua.svg)](https://www.npmjs.com/package/coaty-opcua)
+[![npm version](https://badge.fury.io/js/%40coaty%2Fconnector.opcua.svg)](https://www.npmjs.com/package/@coaty/connector.opcua)
 
 ## Table of Contents
 
@@ -33,7 +34,7 @@ You can install the latest version of the OPC UA connector package in your Coaty
 project as follows:
 
 ```sh
-npm install coaty-opcua --save
+npm install @coaty/connector.opcua
 ```
 
 This npm package targets Coaty projects using ECMAScript version `es5` and

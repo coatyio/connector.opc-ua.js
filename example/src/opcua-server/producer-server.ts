@@ -8,7 +8,7 @@ import { StatusCodes } from "node-opcua-status-code";
 import { CallMethodResultOptions } from "node-opcua-types";
 import { DataType, Variant } from "node-opcua-variant";
 
-import { NodeUtils } from "coaty/runtime-node";
+import { NodeUtils } from "@coaty/core/runtime-node";
 
 
 function constructAddressSpace(srv: OPCUAServer) {
@@ -92,7 +92,12 @@ function constructAddressSpace(srv: OPCUAServer) {
                 },
                 {
                     name: "low",
-                    description: { text: "specifies whether temperature is too low (true) or too high (false)" },
+                    description: { text: "specifies whether temperature is too low (true)" },
+                    dataType: DataType.Boolean,
+                },
+                {
+                    name: "high",
+                    description: { text: "specifies whether temperature is too high (true)" },
                     dataType: DataType.Boolean,
                 },
             ],
@@ -107,7 +112,8 @@ function constructAddressSpace(srv: OPCUAServer) {
         .bindMethod((inputArguments, context, callback) => {
             const temperature = inputArguments[0].value as number;
             const tooLow = inputArguments[1].value as boolean;
-            const confirmation = `temperature=${temperature}, tooLow=${tooLow}`;
+            const tooHigh = inputArguments[2].value as boolean;
+            const confirmation = `temperature=${temperature}, tooLow=${tooLow}, tooHigh=${tooHigh}`;
 
             // NodeUtils.logInfo(`AlertTemperature method called with ${confirmation}`);
 
