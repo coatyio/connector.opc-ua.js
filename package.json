@@ -1,6 +1,6 @@
 {
     "name": "@coaty/connector.opcua",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Coaty JS OPC UA connector for Node.js",
     "homepage": "https://coaty.io",
     "repository": {
