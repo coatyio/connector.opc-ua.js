@@ -3,8 +3,6 @@
 import { Controller } from "@coaty/core";
 import { NodeUtils } from "@coaty/core/runtime-node";
 
-import { filter } from "rxjs/operators";
-
 /**
  * Consumes raw MQTT messages published by an OPC UA connected producer agent
  * and logs them on the console.
@@ -15,7 +13,6 @@ export class MqttConsumerController extends Controller {
         super.onCommunicationManagerStarting();
 
         this.communicationManager.observeRaw("opcua/#")
-            .pipe(filter(([topic]) => topic.startsWith("opcua/")))
             .subscribe(([topic, payload]) =>
                 NodeUtils.logInfo(`Raw MQTT topic ${topic} with payload ${JSON.parse(payload.toString())}`));
     }
