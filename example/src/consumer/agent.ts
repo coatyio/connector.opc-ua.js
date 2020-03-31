@@ -57,6 +57,7 @@ const configuration: Configuration = {
     },
     communication: {
         brokerUrl: "mqtt://localhost:1883",
+        namespace: "coaty.opcua.example",
         shouldAutoStart: true,
     },
 };
