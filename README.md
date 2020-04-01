@@ -9,6 +9,7 @@
 ## Table of Contents
 
 * [Introduction](#introduction)
+* [Installation](#installation)
 * [Getting started](#getting-started)
 * [Custom OPC UA controllers](#custom-opc-ua-controllers)
 * [Contributing](#contributing)
