@@ -12,8 +12,6 @@
         "build": "gulp build",
         "lint": "gulp lint",
         "lint:fix": "gulp lint:fix",
-        "broker": "coaty-scripts broker --nobonjour",
-        "broker:verbose": "coaty-scripts broker --nobonjour --verbose",
         "doc": "gulp doc",
         "version-release": "coaty-scripts version-release",
         "cut-release": "coaty-scripts version-release %1 && gulp build && gulp doc && coaty-scripts cut-release %2",
