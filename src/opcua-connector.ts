@@ -291,7 +291,7 @@ export interface OpcuaAnalogDataItem {
  * on("error", (error: any) => void);
  *
  * // Emitted whenever a monitored OPC UA data item changes its value.
- * on("dataValueChanged", (
+ * on("dataValueChange", (
  *        dataSourceIdentifier: string,
  *        dataSource: OpcuaDataSource,
  *        dataValue: any,
