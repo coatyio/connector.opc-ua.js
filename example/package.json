@@ -18,21 +18,21 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "@coaty/connector.opcua": "^2.0.0",
-        "@coaty/core": "^2.0.1",
-        "node-opcua-client": "^2.4.4",
-        "node-opcua-server": "^2.4.4",
-        "opcua-commander": "^0.7.1",
-        "rxjs": "^6.5.4"
+        "@coaty/connector.opcua": "^2.1.0",
+        "@coaty/core": "^2.1.1",
+        "node-opcua-client": "^2.5.12",
+        "node-opcua-server": "^2.5.12",
+        "opcua-commander": "^0.8.2",
+        "rxjs": "^6.5.5"
     },
     "devDependencies": {
-        "@types/node": "^13.9.0",
-        "fs-extra": "^8.1.0",
+        "@types/node": "^14.0.5",
+        "fs-extra": "^9.0.0",
         "gulp": "^4.0.2",
         "gulp-sourcemaps": "^2.6.5",
         "gulp-tslint": "^8.1.4",
         "gulp-typescript": "^5.0.1",
         "tslint": "^5.20.1",
-        "typescript": "^3.8.3"
+        "typescript": "^3.9.3"
     }
 }
