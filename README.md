@@ -32,7 +32,7 @@ demonstrates best practices and typical usage patterns.
 ## Installation
 
 You can install the latest version of the OPC UA connector package in your Coaty
-project as follows:
+application as follows:
 
 ```sh
 npm install @coaty/connector.opcua
