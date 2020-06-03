@@ -18,9 +18,8 @@
     "license": "MIT",
     "private": true,
     "dependencies": {
-        "@coaty/connector.opcua": "^2.1.0",
-        "@coaty/core": "^2.1.1",
-        "node-opcua-client": "^2.5.12",
+        "@coaty/connector.opcua": "^2",
+        "@coaty/core": "^2",
         "node-opcua-server": "^2.5.12",
         "opcua-commander": "^0.8.2",
         "rxjs": "^6.5.5"
