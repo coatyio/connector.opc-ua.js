@@ -42,7 +42,7 @@
         "url": "https://github.com/coatyio/connector.opc-ua.js/issues"
     },
     "dependencies": {
-        "@coaty/core": "^2.1.1",
+        "@coaty/core": "^2",
         "node-opcua-client": "^2.5.12",
         "rxjs": "^6.5.5"
     },
