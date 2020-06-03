@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/coatyio/connector.opc-ua.js/compare/v2.1.0...v2.2.0) (2020-06-03)
+
+This minor release upgrades its Coaty JS dependency to v2.2.0.
+
+### Bug Fixes
+
+* **example:** add missing communication namespace in producer agent ([9a109a2](https://github.com/coatyio/connector.opc-ua.js/commit/9a109a2d6557ac22bf0a973154c328b6c49d1d95))
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/coatyio/connector.opc-ua.js/compare/v2.0.0...v2.1.0) (2020-05-29)
 
