@@ -11,7 +11,9 @@ import {
     ClientSubscription,
     ClientSubscriptionOptions,
     coerceNodeId,
+    DataChangeFilter,
     DataType,
+    ExtensionObject,
     makeBrowsePath,
     MonitoringParametersOptions,
     NodeId,
@@ -142,6 +144,98 @@ export interface OpcuaDataSource {
     shouldMonitorItem?: boolean;
 
     /**
+     * Monitoring parameters influence which information is delivered to the
+     * client (optional). Main monitoring parameters are the data change filter,
+     * size of monitored item queue, and sampling interval (in milliseconds; it
+     * is the fastest rate at which the monitored items should be accessed and
+     * evaluated).
+     *
+     * @remarks These parameters only take effect if the data source is
+     * monitored, i.e. if `shouldMonitorItem` property is set to true.
+     */
+    monitoringParameters?: {
+
+        /**
+         * The interval that defines the fastest rate at which MonitoredItem(s)
+         * should be accessed and evaluated (optional, for monitored items
+         * only).
+         *
+         * This interval is defined in milliseconds. The default is -1, which
+         * specifies that the sampling interval is the same as the publishing
+         * interval of the subscription.
+         *
+         * - The value 0 indicates that the Server should use the fastest
+         *   practical rate.
+         * - The value -1 indicates that the default sampling interval defined
+         *   by the publishing interval of the Subscription is requested.
+         * - A different sampling interval is used if the publishing interval is
+         *   not a supported sampling interval.
+         * - Any negative number is interpreted as -1.
+         * - The sampling interval is not changed if the publishing interval is
+         *   changed by a subsequent call to the ModifySubscription Service.
+         * - The Server uses this parameter to assign the MonitoredItems to a
+         *   sampling interval that it supports.
+         * - The assigned interval is provided in the revisedSamplingInterval
+         *   parameter.
+         * - The Server shall always return a revisedSamplingInterval that is
+         *   equal or higher than the requested samplingInterval.
+         * - If the requested samplingInterval is higher than the maximum
+         *   sampling interval supported by the Server, the maximum sampling
+         *   interval is returned.
+         */
+        samplingInterval?: number;
+
+        /**
+         * An optional data change filter is used when you are only interested
+         * in certain kinds of changes in the monitored item, or need to reduce
+         * the amount of incoming notifications by specifying a deadband. The
+         * data change filter defines the conditions under which a data change
+         * notification should be reported and, optionally, a range or band for
+         * value changes where no data change notification is generated
+         * (deadband). See type
+         * [DataChangeFilter](https://node-opcua.github.io/api_doc/2.0.0/classes/datachangefilter.html)
+         * of `node-opcua-client` package.
+         *
+         * If not specified, no data change filter is set.
+         *
+         * For example, to set a data change filter with a deadband trigger: 
+         * ```ts
+         * import { DataChangeFilter, DataChangeTrigger, DeadbandType } from "node-opcua-client";
+         *
+         * filter: new DataChangeFilter({
+         *    trigger: DataChangeTrigger.StatusValue,
+         *    deadbandType: DeadbandType.Absolute,
+         *    deadbandValue: 0.1
+         * })
+         * ```
+         */
+        filter?: DataChangeFilter | ExtensionObject | null;
+
+        /**
+         * The queue size for a monitored item, i.e. the maximum number of data
+         * samples which can be queued on the server. When the data gets
+         * delivered to the client (publish) the queue gets emptied. Each queue
+         * has a discard policy in case an overflow occurs, see property
+         * `discardOldest`.
+         *
+         * Value must be a UInt32. If not specified, the value defaults to 1.
+         */
+        queueSize?: number;
+
+        /**
+         * Determines whether to discard the oldest value or the latest value
+         * from the monitored item queue in case the queue overflows (optional).
+         *
+         * If not specified, the value defaults to true. If queue size is set to
+         * 1, the discard policy is ignored.
+         */
+        discardOldest?: boolean;
+    };
+
+    /**
+     * @deprecated since 2.3.0. Use `monitoringParameters.samplingInterval`
+     * instead.
+     *
      * The interval that defines the fastest rate at which MonitoredItem(s)
      * should be accessed and evaluated (optional, for monitored items only).
      *
@@ -621,10 +715,10 @@ export class OpcuaConnector extends EventEmitter {
                     attributeId: AttributeIds.Value,
                 };
                 const requestedParams: MonitoringParametersOptions = {
-                    samplingInterval: dataSource.samplingInterval,
-                    filter: null,
-                    discardOldest: true,
-                    queueSize: 1,
+                    samplingInterval: dataSource.samplingInterval ?? dataSource.monitoringParameters?.samplingInterval,
+                    filter: dataSource.monitoringParameters?.filter ?? null,
+                    discardOldest: dataSource.monitoringParameters?.discardOldest ?? true,
+                    queueSize: dataSource.monitoringParameters?.queueSize ?? 1,
                 };
                 return subscription.monitor(itemToMonitor, requestedParams, TimestampsToReturn.Source);
             })
