@@ -53,7 +53,9 @@ const opcuaOptions: OpcuaOptions = {
         "PLC1.Tag1": {
             nodeIdentifier: { namespaceUri: producerNamespaceUri, identifierWithType: "i=2001" },
             shouldMonitorItem: true,
-            samplingInterval: 1000,
+            monitoringParameters: {
+                samplingInterval: 1000,
+            },
         },
         // Variable FreeMemory of Object node device PLC1.
         "PLC1.FreeMemory": {
@@ -62,7 +64,9 @@ const opcuaOptions: OpcuaOptions = {
                 relativePath: `/Objects/[${producerNamespaceUri}]:S7-1500 PLC 1.[${producerNamespaceUri}]:FreeMemory`,
             },
             shouldMonitorItem: true,
-            samplingInterval: 2000,
+            monitoringParameters: {
+                samplingInterval: 2000,
+            },
             coerceValue: (value: number, timestamp?: Date, forReading?: boolean) =>
                 forReading ? value / 1024 / 1024 : value * 1024 * 1024,     // from Bytes to MB and vice versa
         },
@@ -70,7 +74,9 @@ const opcuaOptions: OpcuaOptions = {
         "PLC2.Temperature": {
             nodeIdentifier: { namespaceUri: producerNamespaceUri, identifierWithType: "s=temperature" },
             shouldMonitorItem: true,
-            samplingInterval: 1000,
+            monitoringParameters: {
+                samplingInterval: 1000,
+            },
         },
         // Object node for device PLC2 providing the AlertTemperature method.
         "PLC2": {
