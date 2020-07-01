@@ -9,6 +9,7 @@ import {
     BrowsePath,
     ClientSession,
     ClientSubscription,
+    ClientSubscriptionOptions,
     coerceNodeId,
     DataType,
     makeBrowsePath,
@@ -54,6 +55,32 @@ export interface OpcuaOptions {
      * of `node-opcua-client` package.
      */
     connectionUserIdentity?: UserIdentityInfo;
+
+    /**
+     * Options to set up a common subscription for monitoring items in an OPC UA
+     * client (optional). See interface
+     * [ClientSubscriptionOptions](https://node-opcua.github.io/api_doc/2.0.0/interfaces/clientsubscriptionoptions.html)
+     * of `node-opcua-client` package.
+     *
+     * If a subscription option is not specified, its default value is defined
+     * as follows:
+     * ```ts
+     * {
+     *    requestedPublishingInterval: 100,
+     *    requestedLifetimeCount: 60,
+     *    requestedMaxKeepAliveCount: 10,
+     *    maxNotificationsPerPublish: 0,
+     *    publishingEnabled: true,
+     *    priority: 1
+     * }
+     * ```
+     *
+     * @remarks As all monitored OPC UA data item sources share the same client
+     * subscription, subscription options are applied to all of them. If you
+     * need different options for different monitored items, define them in
+     * separate OpcuaConnector instances.
+     */
+    clientSubscriptionOptions?: ClientSubscriptionOptions;
 
     /** 
      * An object hash that defines a set of OPC UA data sources to be monitored.
@@ -558,18 +585,22 @@ export class OpcuaConnector extends EventEmitter {
 
     private _createClientSubscription() {
         if (this._clientSubscription === undefined) {
-            this._clientSubscription = ClientSubscription.create(this._session, {
-                // These are the default values for options provided by class
-                // ClientSubscription.
-                requestedPublishingInterval: 100,
-                requestedLifetimeCount: 60,
-                requestedMaxKeepAliveCount: 10,
-                maxNotificationsPerPublish: 0,
-                publishingEnabled: true,
-                priority: 1,
-            }).on("internal_error", (err: Error) => {
-                this.emit("error", err);
-            });
+            const options = {
+                // Default subscription options.
+                ...{
+                    requestedPublishingInterval: 100,
+                    requestedLifetimeCount: 60,
+                    requestedMaxKeepAliveCount: 10,
+                    maxNotificationsPerPublish: 0,
+                    publishingEnabled: true,
+                    priority: 1,
+                },
+                ...this._opcuaOptions.clientSubscriptionOptions,
+            };
+            this._clientSubscription = ClientSubscription.create(this._session, options)
+                .on("internal_error", (err: Error) => {
+                    this.emit("error", err);
+                });
         }
         return this._clientSubscription;
     }
