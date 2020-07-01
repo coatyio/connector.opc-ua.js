@@ -5,6 +5,7 @@ import { EventEmitter } from "events";
 import {
     AttributeIds,
     BrowseDescription,
+    BrowseDescriptionOptions,
     BrowsePath,
     ClientSession,
     ClientSubscription,
@@ -497,13 +498,16 @@ export class OpcuaConnector extends EventEmitter {
      * all its OPC UA child nodes.
      *
      * @param dataSource OPC UA data source for an OPC UA item to browse
+     * @param options optional OPC UA browse description options as defined in
+     * interface
+     * [BrowseDescriptionOptions](https://node-opcua.github.io/api_doc/2.0.0/interfaces/browsedescriptionoptions.html)
      * @returns a promise that resolves to an array of `ReferenceDescription`
      * objects describing child nodes (imported from `node-opcua-client`) or
      * rejects if the given item couldn't be browsed.
      */
-    browse(dataSource: OpcuaDataSource): Promise<ReferenceDescription[]> {
+    browse(dataSource: OpcuaDataSource, options?: BrowseDescriptionOptions): Promise<ReferenceDescription[]> {
         return this._nodeIdFromDataSource(dataSource)
-            .then(nodeId => this._session.browse(new BrowseDescription({ nodeId })))
+            .then(nodeId => this._session.browse(new BrowseDescription({ ...options ?? {}, nodeId })))
             .then(browseResult => {
                 if (browseResult.statusCode.name !== "Good") {
                     throw new Error(`browse: ${browseResult.statusCode.description} ${dataSource}`);
