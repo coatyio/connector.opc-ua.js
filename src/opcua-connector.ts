@@ -25,8 +25,8 @@ import {
 } from "node-opcua-client";
 
 /**
- * Defines options for connecting to an OPC UA server and monitoring OPC UA data
- * items.
+ * Defines options for connecting to an OPC UA server and for defining OPC UA
+ * data source items.
  */
 export interface OpcuaOptions {
 
@@ -38,7 +38,7 @@ export interface OpcuaOptions {
 
     /**
      * Options to set up an OPC UA client (optional). See interface
-     * [OPCUAClientOptions](https://github.com/node-opcua/node-opcua/blob/master/packages/node-opcua-client/source/opcua_client.ts)
+     * [OPCUAClientOptions](https://node-opcua.github.io/api_doc/2.0.0/interfaces/opcuaclientoptions.html)
      * of `node-opcua-client` package.
      */
     connectionOptions?: OPCUAClientOptions;
@@ -49,7 +49,7 @@ export interface OpcuaOptions {
      * `UserTokenType.Anonymous`.
      *
      * See type
-     * [UserIdentityInfo](https://github.com/node-opcua/node-opcua/blob/master/packages/node-opcua-client/source/opcua_client.ts)
+     * [UserIdentityInfo](https://node-opcua.github.io/api_doc/2.0.0/globals.html#useridentityinfo)
      * of `node-opcua-client` package.
      */
     connectionUserIdentity?: UserIdentityInfo;
@@ -116,7 +116,11 @@ export interface OpcuaDataSource {
     /**
      * The interval that defines the fastest rate at which MonitoredItem(s)
      * should be accessed and evaluated (optional, for monitored items only).
-     * This interval is defined in milliseconds.
+     *
+     * This interval is defined in milliseconds. The default is -1, which
+     * specifies that the sampling interval is the same as the publishing
+     * interval of the subscription.
+     *
      * - The value 0 indicates that the Server should use the fastest practical
      *   rate.
      * - The value -1 indicates that the default sampling interval defined by
@@ -335,7 +339,7 @@ export class OpcuaConnector extends EventEmitter {
 
     /**
      * Gets the OPC UA client session, as defined by the interface
-     * [ClientSession](https://github.com/node-opcua/node-opcua/blob/master/packages/node-opcua-client/source/client_session.ts)
+     * [ClientSession](https://node-opcua.github.io/api_doc/2.0.0/interfaces/clientsession.html)
      * of `node-opcua-client` package.
      *
      * The client session of the connector can be used to access OPC UA client
@@ -453,7 +457,7 @@ export class OpcuaConnector extends EventEmitter {
      *
      * @param dataSource OPC UA data source for an OPC UA item
      * @param attributeId an OPC UA compliant AttributeId as defined by enum
-     * [AttributeIds](https://github.com/node-opcua/node-opcua/blob/master/packages/node-opcua-data-model/source/attributeIds.ts)
+     * [AttributeIds](https://node-opcua.github.io/api_doc/2.0.0/enums/attributeids.html)
      * @returns a promise that resolves to the attribute value of the given item
      * or rejects if attribute value can't be read or coerced
      */
