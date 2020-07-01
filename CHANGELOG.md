@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="2.3.1"></a>
+## [2.3.1](https://github.com/coatyio/connector.opc-ua.js/compare/v2.3.0...v2.3.1) (2020-07-01)
+
+This patch release fixes an issue in the `OpcuaIoActorController` class.
+
+### Bug Fixes
+
+* catch and trace write errors in `OpcuaIoActorController` ([bf0c1ad](https://github.com/coatyio/connector.opc-ua.js/commit/bf0c1ad267f3942cb4a2b03ee85ddcd5a4b5e754))
+
 <a name="2.3.0"></a>
 # [2.3.0](https://github.com/coatyio/connector.opc-ua.js/compare/v2.2.0...v2.3.0) (2020-07-01)
 

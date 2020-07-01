@@ -6,7 +6,7 @@ import { standardUnits } from "node-opcua-data-access";
 import { OPCUAServer } from "node-opcua-server";
 import { StatusCodes } from "node-opcua-status-code";
 import { CallMethodResultOptions } from "node-opcua-types";
-import { DataType, Variant } from "node-opcua-variant";
+import { DataType, Variant, VariantOptions } from "node-opcua-variant";
 
 import { NodeUtils } from "@coaty/core/runtime-node";
 
@@ -44,9 +44,7 @@ function constructAddressSpace(srv: OPCUAServer) {
         },
     });
 
-    setInterval(() => variable1.setValueFromSource(new Variant(
-        { dataType: DataType.Double, value: ++var1 })),
-        1000);
+    setInterval(() => variable1.setValueFromSource({ dataType: DataType.Int32, value: ++var1 }), 1000);
 
     namespace.addVariable({
         componentOf: device1,
@@ -63,6 +61,8 @@ function constructAddressSpace(srv: OPCUAServer) {
         nodeId: "ns=1;b=1020FFAA",
         browseName: "Tag2",
         dataType: "String",
+        // This variable is written by producer agent. It contains the latest
+        // stringified value of variable1.
         value: new Variant({ dataType: DataType.String, value: "" }),
     });
 
@@ -161,6 +161,7 @@ server.initialize()
     })
     .catch(error => {
         NodeUtils.logError(error, `Server failed to start.`);
+        console.error(error);
         NodeUtils.logInfo(`Exiting...`);
         process.exit(-1);
     });
