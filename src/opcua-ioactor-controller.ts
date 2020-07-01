@@ -123,13 +123,15 @@ export class OpcuaIoActorController extends IoActorController {
      * value or to perform conditional writes.
      *
      * By default, the given data value is written to the given OPC UA data
-     * source variable.
+     * source variable. If an error occurs it is emitted by the
+     * `traceOpcuaError` method.
      *
      * @param dataSource an OPC UA data source for a variable to be written
      * @param dataValue the value to be written
      */
     protected writeDataValue(dataSource: OpcuaDataSource, dataValue: any) {
-        this._opcuaConnector.writeVariableValue(dataSource, dataValue);
+        this._opcuaConnector.writeVariableValue(dataSource, dataValue)
+            .catch(error => this._opcuaConnector.emit("error", error));
     }
 
     /**
