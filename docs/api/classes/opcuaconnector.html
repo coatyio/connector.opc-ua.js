@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OpcuaConnector | @coaty/connector.opcua - v2.2.0</title>
-	<meta name="description" content="Documentation for @coaty/connector.opcua - v2.2.0">
+	<title>OpcuaConnector | @coaty/connector.opcua - v2.3.0</title>
+	<meta name="description" content="Documentation for @coaty/connector.opcua - v2.3.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@coaty/connector.opcua - v2.2.0</a>
+					<a href="../index.html" class="title">@coaty/connector.opcua - v2.3.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -189,7 +189,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L322">src/opcua-connector.ts:322</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L448">src/opcua-connector.ts:448</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -260,13 +260,13 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L347">src/opcua-connector.ts:347</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L473">src/opcua-connector.ts:473</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Gets the OPC UA client session, as defined by the interface
-										<a href="https://github.com/node-opcua/node-opcua/blob/master/packages/node-opcua-client/source/client_session.ts">ClientSession</a>
+										<a href="https://node-opcua.github.io/api_doc/2.0.0/interfaces/clientsession.html">ClientSession</a>
 									of <code>node-opcua-client</code> package.</p>
 								</div>
 								<p>The client session of the connector can be used to access OPC UA client
@@ -330,13 +330,13 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 					<a name="browse" class="tsd-anchor"></a>
 					<h3>browse</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">browse<span class="tsd-signature-symbol">(</span>dataSource<span class="tsd-signature-symbol">: </span><a href="../interfaces/opcuadatasource.html" class="tsd-signature-type">OpcuaDataSource</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReferenceDescription</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">browse<span class="tsd-signature-symbol">(</span>dataSource<span class="tsd-signature-symbol">: </span><a href="../interfaces/opcuadatasource.html" class="tsd-signature-type">OpcuaDataSource</a>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">BrowseDescriptionOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">ReferenceDescription</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L500">src/opcua-connector.ts:500</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L629">src/opcua-connector.ts:629</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,6 +351,14 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 									<h5>dataSource: <a href="../interfaces/opcuadatasource.html" class="tsd-signature-type">OpcuaDataSource</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>OPC UA data source for an OPC UA item to browse</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">BrowseDescriptionOptions</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional OPC UA browse description options as defined in
+											interface
+										<a href="https://node-opcua.github.io/api_doc/2.0.0/interfaces/browsedescriptionoptions.html">BrowseDescriptionOptions</a></p>
 									</div>
 								</li>
 							</ul>
@@ -371,7 +379,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L524">src/opcua-connector.ts:524</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L653">src/opcua-connector.ts:653</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -420,7 +428,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L356">src/opcua-connector.ts:356</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L482">src/opcua-connector.ts:482</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -444,7 +452,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L372">src/opcua-connector.ts:372</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L498">src/opcua-connector.ts:498</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -827,7 +835,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L482">src/opcua-connector.ts:482</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L608">src/opcua-connector.ts:608</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -866,7 +874,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L460">src/opcua-connector.ts:460</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L586">src/opcua-connector.ts:586</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -893,7 +901,7 @@ AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 									<h5>attributeId: <span class="tsd-signature-type">AttributeIds</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>an OPC UA compliant AttributeId as defined by enum
-										<a href="https://github.com/node-opcua/node-opcua/blob/master/packages/node-opcua-data-model/source/attributeIds.ts">AttributeIds</a></p>
+										<a href="https://node-opcua.github.io/api_doc/2.0.0/enums/attributeids.html">AttributeIds</a></p>
 									</div>
 								</li>
 							</ul>
@@ -913,7 +921,7 @@ AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L412">src/opcua-connector.ts:412</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L538">src/opcua-connector.ts:538</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -947,7 +955,7 @@ AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L392">src/opcua-connector.ts:392</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L518">src/opcua-connector.ts:518</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1079,7 +1087,7 @@ AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L434">src/opcua-connector.ts:434</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L560">src/opcua-connector.ts:560</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

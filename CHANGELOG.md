@@ -1,5 +1,16 @@
 # Changelog
 
+<a name="2.3.0"></a>
+# [2.3.0](https://github.com/coatyio/connector.opc-ua.js/compare/v2.2.0...v2.3.0) (2020-07-01)
+
+This feature release supports explicit OPC UA configuration options for client subscriptions, monitoring parameters, and browse descriptions.
+
+### Features
+
+* **connector:** support optional browse description options for `OpcuaConnector.browse` functionality ([44cf00e](https://github.com/coatyio/connector.opc-ua.js/commit/44cf00ee51e9d06c2e26c6cbf6506b324ade42d1))
+* **connector:** support optional client subscription options for OpcuaConnector monitoring functionality ([5a06c93](https://github.com/coatyio/connector.opc-ua.js/commit/5a06c9376d78ed24966d1c3ae72ff57df90559be))
+* **connector:** support optional monitoring parameters for OpcuaConnector monitoring functionality ([dfde2b9](https://github.com/coatyio/connector.opc-ua.js/commit/dfde2b90d6eb4173b99b83027c5fbf1c7cbdc2a9))
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/coatyio/connector.opc-ua.js/compare/v2.1.0...v2.2.0) (2020-06-03)
 

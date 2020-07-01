@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OpcuaMqttOptions | @coaty/connector.opcua - v2.2.0</title>
-	<meta name="description" content="Documentation for @coaty/connector.opcua - v2.2.0">
+	<title>OpcuaMqttOptions | @coaty/connector.opcua - v2.3.0</title>
+	<meta name="description" content="Documentation for @coaty/connector.opcua - v2.3.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@coaty/connector.opcua - v2.2.0</a>
+					<a href="../index.html" class="title">@coaty/connector.opcua - v2.3.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -110,6 +110,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="opcuamqttoptions.html#clientsubscriptionoptions" class="tsd-kind-icon">client<wbr>Subscription<wbr>Options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="opcuamqttoptions.html#connectionoptions" class="tsd-kind-icon">connection<wbr>Options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="opcuamqttoptions.html#connectionuseridentity" class="tsd-kind-icon">connection<wbr>User<wbr>Identity</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="opcuamqttoptions.html#datasources" class="tsd-kind-icon">data<wbr>Sources</a></li>
@@ -123,19 +124,56 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+					<a name="clientsubscriptionoptions" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> client<wbr>Subscription<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">client<wbr>Subscription<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ClientSubscriptionOptions</span></div>
+					<aside class="tsd-sources">
+						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#clientsubscriptionoptions">clientSubscriptionOptions</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L85">src/opcua-connector.ts:85</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Options to set up a common subscription for monitoring items in an OPC UA
+								client (optional). See interface
+								<a href="https://node-opcua.github.io/api_doc/2.0.0/interfaces/clientsubscriptionoptions.html">ClientSubscriptionOptions</a>
+							of <code>node-opcua-client</code> package.</p>
+						</div>
+						<p>If a subscription option is not specified, its default value is defined
+						as follows:</p>
+						<pre><code class="language-ts">{
+   requestedPublishingInterval: <span class="hljs-number">100</span>,
+   requestedLifetimeCount: <span class="hljs-number">60</span>,
+   requestedMaxKeepAliveCount: <span class="hljs-number">10</span>,
+   maxNotificationsPerPublish: <span class="hljs-number">0</span>,
+   publishingEnabled: <span class="hljs-literal">true</span>,
+   priority: <span class="hljs-number">1</span>
+}</code></pre>
+						<dl class="tsd-comment-tags">
+							<dt>remarks</dt>
+							<dd><p>As all monitored OPC UA data item sources share the same client
+									subscription, subscription options are applied to all of them. If you
+									need different options for different monitored items, define them in
+								separate OpcuaConnector instances.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="connectionoptions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> connection<wbr>Options</h3>
 					<div class="tsd-signature tsd-kind-icon">connection<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">OPCUAClientOptions</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#connectionoptions">connectionOptions</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L44">src/opcua-connector.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L48">src/opcua-connector.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Options to set up an OPC UA client (optional). See interface
-								<a href="https://github.com/node-opcua/node-opcua/blob/master/packages/node-opcua-client/source/opcua_client.ts">OPCUAClientOptions</a>
+								<a href="https://node-opcua.github.io/api_doc/2.0.0/interfaces/opcuaclientoptions.html">OPCUAClientOptions</a>
 							of <code>node-opcua-client</code> package.</p>
 						</div>
 					</div>
@@ -147,7 +185,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#connectionuseridentity">connectionUserIdentity</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L55">src/opcua-connector.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L59">src/opcua-connector.ts:59</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -157,7 +195,7 @@
 							<code>UserTokenType.Anonymous</code>.</p>
 						</div>
 						<p>See type
-							<a href="https://github.com/node-opcua/node-opcua/blob/master/packages/node-opcua-client/source/opcua_client.ts">UserIdentityInfo</a>
+							<a href="https://node-opcua.github.io/api_doc/2.0.0/globals.html#useridentityinfo">UserIdentityInfo</a>
 						of <code>node-opcua-client</code> package.</p>
 					</div>
 				</section>
@@ -168,7 +206,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#datasources">dataSources</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L62">src/opcua-connector.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L92">src/opcua-connector.ts:92</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -194,7 +232,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#endpointurl">endpointUrl</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L37">src/opcua-connector.ts:37</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L41">src/opcua-connector.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -210,7 +248,7 @@
 					<div class="tsd-signature tsd-kind-icon">topics<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-mqtt-controller.ts#L41">src/opcua-mqtt-controller.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-mqtt-controller.ts#L41">src/opcua-mqtt-controller.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -288,6 +326,9 @@
 					<li class="current tsd-kind-interface">
 						<a href="opcuamqttoptions.html" class="tsd-kind-icon">Opcua<wbr>Mqtt<wbr>Options</a>
 						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
+								<a href="opcuamqttoptions.html#clientsubscriptionoptions" class="tsd-kind-icon">client<wbr>Subscription<wbr>Options</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 								<a href="opcuamqttoptions.html#connectionoptions" class="tsd-kind-icon">connection<wbr>Options</a>
 							</li>

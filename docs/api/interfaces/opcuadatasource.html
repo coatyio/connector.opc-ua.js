@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OpcuaDataSource | @coaty/connector.opcua - v2.2.0</title>
-	<meta name="description" content="Documentation for @coaty/connector.opcua - v2.2.0">
+	<title>OpcuaDataSource | @coaty/connector.opcua - v2.3.0</title>
+	<meta name="description" content="Documentation for @coaty/connector.opcua - v2.3.0">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">@coaty/connector.opcua - v2.2.0</a>
+					<a href="../index.html" class="title">@coaty/connector.opcua - v2.3.0</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -100,8 +100,9 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuadatasource.html#browsepath" class="tsd-kind-icon">browse<wbr>Path</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuadatasource.html#coercevalue" class="tsd-kind-icon">coerce<wbr>Value</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuadatasource.html#datatype" class="tsd-kind-icon">data<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuadatasource.html#monitoringparameters" class="tsd-kind-icon">monitoring<wbr>Parameters</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuadatasource.html#nodeidentifier" class="tsd-kind-icon">node<wbr>Identifier</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuadatasource.html#samplinginterval" class="tsd-kind-icon">sampling<wbr>Interval</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuadatasource.html#samplinginterval-1" class="tsd-kind-icon">sampling<wbr>Interval</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="opcuadatasource.html#shouldmonitoritem" class="tsd-kind-icon">should<wbr>Monitor<wbr>Item</a></li>
 							</ul>
 						</section>
@@ -116,7 +117,7 @@
 					<div class="tsd-signature tsd-kind-icon">browse<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>relativePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>rootNode<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L107">src/opcua-connector.ts:107</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L137">src/opcua-connector.ts:137</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -160,7 +161,7 @@
 					<div class="tsd-signature tsd-kind-icon">coerce<wbr>Value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, timestamp<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Date</span>, forReading<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L160">src/opcua-connector.ts:160</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L286">src/opcua-connector.ts:286</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -218,7 +219,7 @@
 					<div class="tsd-signature tsd-kind-icon">data<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">DataType</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L166">src/opcua-connector.ts:166</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L292">src/opcua-connector.ts:292</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -229,12 +230,124 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="monitoringparameters" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> monitoring<wbr>Parameters</h3>
+					<div class="tsd-signature tsd-kind-icon">monitoring<wbr>Parameters<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>discardOldest<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>filter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">DataChangeFilter</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ExtensionObject</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">; </span>queueSize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>samplingInterval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L156">src/opcua-connector.ts:156</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Monitoring parameters influence which information is delivered to the
+								client (optional). Main monitoring parameters are the data change filter,
+								size of monitored item queue, and sampling interval (in milliseconds; it
+								is the fastest rate at which the monitored items should be accessed and
+							evaluated).</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>remarks</dt>
+							<dd><p>These parameters only take effect if the data source is
+								monitored, i.e. if <code>shouldMonitorItem</code> property is set to true.</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> discard<wbr>Oldest<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Determines whether to discard the oldest value or the latest value
+										from the monitored item queue in case the queue overflows (optional).</p>
+									</div>
+									<p>If not specified, the value defaults to true. If queue size is set to
+									1, the discard policy is ignored.</p>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> filter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">DataChangeFilter</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ExtensionObject</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>An optional data change filter is used when you are only interested
+											in certain kinds of changes in the monitored item, or need to reduce
+											the amount of incoming notifications by specifying a deadband. The
+											data change filter defines the conditions under which a data change
+											notification should be reported and, optionally, a range or band for
+											value changes where no data change notification is generated
+											(deadband). See type
+											<a href="https://node-opcua.github.io/api_doc/2.0.0/classes/datachangefilter.html">DataChangeFilter</a>
+										of <code>node-opcua-client</code> package.</p>
+									</div>
+									<p>If not specified, no data change filter is set.</p>
+									<p>For example, to set a data change filter with a deadband trigger:</p>
+									<pre><code class="language-ts"><span class="hljs-keyword">import</span> { DataChangeFilter, DataChangeTrigger, DeadbandType } <span class="hljs-keyword">from</span> <span class="hljs-string">"node-opcua-client"</span>;
+
+filter: <span class="hljs-keyword">new</span> DataChangeFilter({
+   trigger: DataChangeTrigger.StatusValue,
+   deadbandType: DeadbandType.Absolute,
+   deadbandValue: <span class="hljs-number">0.1</span>
+})</code></pre>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> queue<wbr>Size<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The queue size for a monitored item, i.e. the maximum number of data
+											samples which can be queued on the server. When the data gets
+											delivered to the client (publish) the queue gets emptied. Each queue
+											has a discard policy in case an overflow occurs, see property
+										<code>discardOldest</code>.</p>
+									</div>
+									<p>Value must be a UInt32. If not specified, the value defaults to 1.</p>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> sampling<wbr>Interval<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>The interval that defines the fastest rate at which MonitoredItem(s)
+											should be accessed and evaluated (optional, for monitored items
+										only).</p>
+									</div>
+									<p>This interval is defined in milliseconds. The default is -1, which
+										specifies that the sampling interval is the same as the publishing
+									interval of the subscription.</p>
+									<ul>
+										<li>The value 0 indicates that the Server should use the fastest
+										practical rate.</li>
+										<li>The value -1 indicates that the default sampling interval defined
+										by the publishing interval of the Subscription is requested.</li>
+										<li>A different sampling interval is used if the publishing interval is
+										not a supported sampling interval.</li>
+										<li>Any negative number is interpreted as -1.</li>
+										<li>The sampling interval is not changed if the publishing interval is
+										changed by a subsequent call to the ModifySubscription Service.</li>
+										<li>The Server uses this parameter to assign the MonitoredItems to a
+										sampling interval that it supports.</li>
+										<li>The assigned interval is provided in the revisedSamplingInterval
+										parameter.</li>
+										<li>The Server shall always return a revisedSamplingInterval that is
+										equal or higher than the requested samplingInterval.</li>
+										<li>If the requested samplingInterval is higher than the maximum
+											sampling interval supported by the Server, the maximum sampling
+										interval is returned.</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="nodeidentifier" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> node<wbr>Identifier</h3>
 					<div class="tsd-signature tsd-kind-icon">node<wbr>Identifier<span class="tsd-signature-symbol">:</span> <a href="opcuanodeidentifier.html" class="tsd-signature-type">OpcuaNodeIdentifier</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L81">src/opcua-connector.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L111">src/opcua-connector.ts:111</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -249,40 +362,46 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="samplinginterval" class="tsd-anchor"></a>
+					<a name="samplinginterval-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> sampling<wbr>Interval</h3>
 					<div class="tsd-signature tsd-kind-icon">sampling<wbr>Interval<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L139">src/opcua-connector.ts:139</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L265">src/opcua-connector.ts:265</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The interval that defines the fastest rate at which MonitoredItem(s)
-								should be accessed and evaluated (optional, for monitored items only).
-							This interval is defined in milliseconds.</p>
-							<ul>
-								<li>The value 0 indicates that the Server should use the fastest practical
-								rate.</li>
-								<li>The value -1 indicates that the default sampling interval defined by
-								the publishing interval of the Subscription is requested.</li>
-								<li>A different sampling interval is used if the publishing interval is not
-								a supported sampling interval.</li>
-								<li>Any negative number is interpreted as -1.</li>
-								<li>The sampling interval is not changed if the publishing interval is
-								changed by a subsequent call to the ModifySubscription Service.</li>
-								<li>The Server uses this parameter to assign the MonitoredItems to a
-								sampling interval that it supports.</li>
-								<li>The assigned interval is provided in the revisedSamplingInterval
-								parameter.</li>
-								<li>The Server shall always return a revisedSamplingInterval that is equal
-								or higher than the requested samplingInterval.</li>
-								<li>If the requested samplingInterval is higher than the maximum sampling
-									interval supported by the Server, the maximum sampling interval is
-								returned.</li>
-							</ul>
-						</div>
+						<dl class="tsd-comment-tags">
+							<dt>deprecated</dt>
+							<dd><p>since 2.3.0. Use <code>monitoringParameters.samplingInterval</code>
+								instead.</p>
+								<p>The interval that defines the fastest rate at which MonitoredItem(s)
+								should be accessed and evaluated (optional, for monitored items only).</p>
+								<p>This interval is defined in milliseconds. The default is -1, which
+									specifies that the sampling interval is the same as the publishing
+								interval of the subscription.</p>
+								<ul>
+									<li>The value 0 indicates that the Server should use the fastest practical
+									rate.</li>
+									<li>The value -1 indicates that the default sampling interval defined by
+									the publishing interval of the Subscription is requested.</li>
+									<li>A different sampling interval is used if the publishing interval is not
+									a supported sampling interval.</li>
+									<li>Any negative number is interpreted as -1.</li>
+									<li>The sampling interval is not changed if the publishing interval is
+									changed by a subsequent call to the ModifySubscription Service.</li>
+									<li>The Server uses this parameter to assign the MonitoredItems to a
+									sampling interval that it supports.</li>
+									<li>The assigned interval is provided in the revisedSamplingInterval
+									parameter.</li>
+									<li>The Server shall always return a revisedSamplingInterval that is equal
+									or higher than the requested samplingInterval.</li>
+									<li>If the requested samplingInterval is higher than the maximum sampling
+										interval supported by the Server, the maximum sampling interval is
+									returned.</li>
+								</ul>
+							</dd>
+						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -291,7 +410,7 @@
 					<div class="tsd-signature tsd-kind-icon">should<wbr>Monitor<wbr>Item<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3341496/src/opcua-connector.ts#L114">src/opcua-connector.ts:114</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/3b47732/src/opcua-connector.ts#L144">src/opcua-connector.ts:144</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -355,10 +474,13 @@
 								<a href="opcuadatasource.html#datatype" class="tsd-kind-icon">data<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="opcuadatasource.html#monitoringparameters" class="tsd-kind-icon">monitoring<wbr>Parameters</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="opcuadatasource.html#nodeidentifier" class="tsd-kind-icon">node<wbr>Identifier</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="opcuadatasource.html#samplinginterval" class="tsd-kind-icon">sampling<wbr>Interval</a>
+								<a href="opcuadatasource.html#samplinginterval-1" class="tsd-kind-icon">sampling<wbr>Interval</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="opcuadatasource.html#shouldmonitoritem" class="tsd-kind-icon">should<wbr>Monitor<wbr>Item</a>
