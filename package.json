@@ -42,22 +42,22 @@
         "url": "https://github.com/coatyio/connector.opc-ua.js/issues"
     },
     "dependencies": {
-        "@coaty/core": "^2.2.1",
-        "node-opcua-client": "^2.7.0",
-        "rxjs": "^6.5.5"
+        "@coaty/core": "^2.3.0",
+        "node-opcua-client": "^2.16.0",
+        "rxjs": "^6.6.3"
     },
     "devDependencies": {
-        "@types/node": "^14.0.5",
-        "conventional-changelog": "^3.1.21",
-        "conventional-recommended-bump": "^6.0.9",
-        "fs-extra": "^9.0.0",
+        "@types/node": "^14.11.2",
+        "conventional-changelog": "^3.1.23",
+        "conventional-recommended-bump": "^6.0.10",
+        "fs-extra": "^9.0.1",
         "gulp": "^4.0.2",
         "gulp-tslint": "^8.1.4",
         "gulp-typedoc": "^2.2.5",
         "gulp-typescript": "^5.0.1",
         "tslint": "^5.20.1",
-        "typedoc": "^0.17.7",
-        "typescript": "^3.9.3"
+        "typedoc": "^0.19.2",
+        "typescript": "^4.0.3"
     },
     "engines": {
         "node": ">=8.0.0"
