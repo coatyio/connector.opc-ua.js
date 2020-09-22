@@ -81,20 +81,20 @@
 					event), of errors (<code>&quot;error&quot;</code> event), and of OPC UA session establishment.</p>
 					<p>The event handler signatures are defined as follows:</p>
 					<pre><code class="language-ts"><span class="hljs-comment">// Emitted whenever an OPC UA error occurs.</span>
-on(<span class="hljs-string">"error"</span>, <span class="hljs-function">(<span class="hljs-params">error: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>);
+on(<span class="hljs-string">&quot;error&quot;</span>, <span class="hljs-function">(<span class="hljs-params">error: <span class="hljs-built_in">any</span></span>) =&gt;</span> <span class="hljs-built_in">void</span>);
 
 <span class="hljs-comment">// Emitted whenever a monitored OPC UA data item changes its value.</span>
-on(<span class="hljs-string">"dataValueChange"</span>, (
+on(<span class="hljs-string">&quot;dataValueChange&quot;</span>, <span class="hljs-function">(<span class="hljs-params">
        dataSourceIdentifier: <span class="hljs-built_in">string</span>,
        dataSource: OpcuaDataSource,
        dataValue: <span class="hljs-built_in">any</span>,
-       sourceTimestamp?: <span class="hljs-built_in">Date</span>,  <span class="hljs-comment">// undefined if not provided by OPC UA server</span>
-  ) =&gt; <span class="hljs-built_in">void</span>);
+       sourceTimestamp?: <span class="hljs-built_in">Date</span>,  // <span class="hljs-literal">undefined</span> <span class="hljs-keyword">if</span> not provided by OPC UA server
+  </span>) =&gt;</span> <span class="hljs-built_in">void</span>);
 
 <span class="hljs-comment">// Emitted when the OPC UA client session has been created or closed.</span>
 <span class="hljs-comment">// You can access the session object using the getter `opcuaClientSession`.</span>
-on(<span class="hljs-string">"sessionCreated"</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span>);
-on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">void</span>);</code></pre>
+on(<span class="hljs-string">&quot;sessionCreated&quot;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>);
+on(<span class="hljs-string">&quot;sessionClosed&quot;</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">void</span>);</code></pre>
 					<p>This class also provides convenience methods to read and write variable
 						values, to read attribute values, to read analog item metadata, to browse
 					data items, and to call OPC UA methods.</p>
@@ -189,7 +189,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L448">src/opcua-connector.ts:448</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L448">src/opcua-connector.ts:448</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -229,7 +229,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 					<a name="errormonitor" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> error<wbr>Monitor</h3>
-					<div class="tsd-signature tsd-kind-icon">error<wbr>Monitor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">symbol</span></div>
+					<div class="tsd-signature tsd-kind-icon">error<wbr>Monitor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">unique </span><span class="tsd-signature-type">symbol</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#errormonitor">errorMonitor</a></p>
 						<ul>
@@ -260,7 +260,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L473">src/opcua-connector.ts:473</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L473">src/opcua-connector.ts:473</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -292,7 +292,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#addlistener">addListener</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:553</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:62</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -336,7 +336,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L629">src/opcua-connector.ts:629</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L629">src/opcua-connector.ts:629</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -379,7 +379,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L653">src/opcua-connector.ts:653</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L653">src/opcua-connector.ts:653</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -428,7 +428,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L482">src/opcua-connector.ts:482</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L482">src/opcua-connector.ts:482</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -452,7 +452,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L498">src/opcua-connector.ts:498</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L498">src/opcua-connector.ts:498</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -476,7 +476,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#emit">emit</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:563</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:72</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -503,7 +503,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#eventnames">eventNames</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:568</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:77</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -521,7 +521,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#getmaxlisteners">getMaxListeners</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:560</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:69</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -539,7 +539,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#listenercount">listenerCount</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:564</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:73</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -563,7 +563,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#listeners">listeners</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:561</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:70</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -587,7 +587,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#off">off</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:557</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:66</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -632,7 +632,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#on">on</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:554</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:63</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -677,7 +677,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#once">once</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:555</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:64</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -722,7 +722,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#prependlistener">prependListener</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:566</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:75</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -767,7 +767,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#prependoncelistener">prependOnceListener</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:567</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:76</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -812,7 +812,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#rawlisteners">rawListeners</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:562</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:71</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -835,7 +835,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L608">src/opcua-connector.ts:608</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L608">src/opcua-connector.ts:608</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -874,7 +874,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L586">src/opcua-connector.ts:586</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L586">src/opcua-connector.ts:586</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -884,8 +884,7 @@ on(<span class="hljs-string">"sessionClosed"</span>, <span class="hljs-function"
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>remarks</dt>
-									<dd><p>To use this method in your application code, <code>import {
-AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
+									<dd><p>To use this method in your application code, <code>import { AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 									</dd>
 								</dl>
 							</div>
@@ -921,7 +920,7 @@ AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L538">src/opcua-connector.ts:538</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L538">src/opcua-connector.ts:538</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -955,7 +954,7 @@ AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L518">src/opcua-connector.ts:518</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L518">src/opcua-connector.ts:518</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -995,7 +994,7 @@ AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#removealllisteners">removeAllListeners</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:558</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:67</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1019,7 +1018,7 @@ AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#removelistener">removeListener</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:556</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:65</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1064,7 +1063,7 @@ AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="opcuaconnector.html">OpcuaConnector</a>.<a href="opcuaconnector.html#setmaxlisteners">setMaxListeners</a></p>
 								<ul>
-									<li>Defined in node_modules/@types/node/globals.d.ts:559</li>
+									<li>Defined in node_modules/@types/node/events.d.ts:68</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1087,7 +1086,7 @@ AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L560">src/opcua-connector.ts:560</a></li>
+									<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L560">src/opcua-connector.ts:560</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -1349,6 +1348,5 @@ AttributeIds } from &quot;node-opcua-client&quot;</code>.</p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

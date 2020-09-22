@@ -74,42 +74,42 @@
 						calls by the <code>OpcuaRemoteOperationController</code> as defined by the
 					<code>OpcuaOptions.dataSources</code> property of this interface.</p>
 					<p>Example:</p>
-					<pre><code class="language-ts"><span class="hljs-keyword">const</span> producerNamespaceUri = <span class="hljs-string">"urn:NodeOPCUA-Server-default"</span>;
+					<pre><code class="language-ts"><span class="hljs-keyword">const</span> producerNamespaceUri = <span class="hljs-string">&quot;urn:NodeOPCUA-Server-default&quot;</span>;
 <span class="hljs-keyword">const</span> opcuaRemoteOperationOptions: OpcuaRemoteOperationOptions = {
-    endpointUrl: <span class="hljs-string">"opc.tcp://139.23.56.3:4334/UA/Producer"</span>,
+    endpointUrl: <span class="hljs-string">&quot;opc.tcp://139.23.56.3:4334/UA/Producer&quot;</span>,
     connectionOptions: { ... },
     dataSources: {
         <span class="hljs-comment">// Object node providing the AlertTemperature method.</span>
-        <span class="hljs-string">"PLC2"</span>: {
+        <span class="hljs-string">&quot;PLC2&quot;</span>: {
             browsePath: {
-                rootNode: <span class="hljs-string">"RootFolder"</span>,
+                rootNode: <span class="hljs-string">&quot;RootFolder&quot;</span>,
                 relativePath: <span class="hljs-string">`/Objects/[<span class="hljs-subst">${producerNamespaceUri}</span>]:S7-1500 PLC 2`</span>,
             },
         },
         <span class="hljs-comment">// Method node for AlertTemperature method.</span>
-        <span class="hljs-string">"PLC2.AlertTemperature"</span>: {
+        <span class="hljs-string">&quot;PLC2.AlertTemperature&quot;</span>: {
             browsePath: {
-                rootNode: <span class="hljs-string">"RootFolder"</span>,
+                rootNode: <span class="hljs-string">&quot;RootFolder&quot;</span>,
                 relativePath: <span class="hljs-string">`/Objects/[<span class="hljs-subst">${producerNamespaceUri}</span>]:S7-1500 PLC 2.[<span class="hljs-subst">${producerNamespaceUri}</span>]:AlertTemperature`</span>,
             },
         },
     },
     calls: {
-         <span class="hljs-string">"PLC2"</span>: {
-             <span class="hljs-string">"PLC2.AlertTemperature"</span>: {
-                 operation: <span class="hljs-string">"alertTemperature"</span>,
+         <span class="hljs-string">&quot;PLC2&quot;</span>: {
+             <span class="hljs-string">&quot;PLC2.AlertTemperature&quot;</span>: {
+                 operation: <span class="hljs-string">&quot;alertTemperature&quot;</span>,
                  inputArguments: [
                      {
-                         parameter: <span class="hljs-string">"temp"</span>,
-                         dataType: <span class="hljs-string">"Double"</span>,
+                         parameter: <span class="hljs-string">&quot;temp&quot;</span>,
+                         dataType: <span class="hljs-string">&quot;Double&quot;</span>,
                      },
                      {
-                         parameter: <span class="hljs-string">"isTooLow"</span>,
-                         dataType: <span class="hljs-string">"Boolean"</span>,
+                         parameter: <span class="hljs-string">&quot;isTooLow&quot;</span>,
+                         dataType: <span class="hljs-string">&quot;Boolean&quot;</span>,
                      },
                      {
-                         parameter: <span class="hljs-string">"isTooHigh"</span>,
-                         dataType: <span class="hljs-string">"Boolean"</span>,
+                         parameter: <span class="hljs-string">&quot;isTooHigh&quot;</span>,
+                         dataType: <span class="hljs-string">&quot;Boolean&quot;</span>,
                      },
                  ],
              },
@@ -157,7 +157,7 @@
 					<div class="tsd-signature tsd-kind-icon">calls<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-remote-operations-controller.ts#L167">src/opcua-remote-operations-controller.ts:167</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-remote-operations-controller.ts#L167">src/opcua-remote-operations-controller.ts:167</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -189,7 +189,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#clientsubscriptionoptions">clientSubscriptionOptions</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L85">src/opcua-connector.ts:85</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L85">src/opcua-connector.ts:85</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -226,7 +226,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#connectionoptions">connectionOptions</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L48">src/opcua-connector.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L48">src/opcua-connector.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -244,7 +244,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#connectionuseridentity">connectionUserIdentity</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L59">src/opcua-connector.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L59">src/opcua-connector.ts:59</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -265,7 +265,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#datasources">dataSources</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L92">src/opcua-connector.ts:92</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L92">src/opcua-connector.ts:92</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -291,7 +291,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#endpointurl">endpointUrl</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L41">src/opcua-connector.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L41">src/opcua-connector.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -425,6 +425,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

@@ -77,21 +77,21 @@
 					associated OPC UA data source variable.</p>
 					<p>Example:</p>
 					<pre><code class="language-ts"><span class="hljs-keyword">const</span> opcuaIoActorOptions: OpcuaIoActorOptions = {
-    endpointUrl: <span class="hljs-string">"opc.tcp://139.23.56.3:4334/UA/Producer"</span>,
+    endpointUrl: <span class="hljs-string">&quot;opc.tcp://139.23.56.3:4334/UA/Producer&quot;</span>,
     connectionOptions: { ... },
     dataSources: {
-        <span class="hljs-string">"PLC1.Tag1"</span>: {
-            nodeIdentifier: { namespaceUri: <span class="hljs-string">"urn:NodeOPCUA-Server-default"</span>, identifierWithType: <span class="hljs-string">"i=2001"</span> },
-            dataType: <span class="hljs-string">"Int32"</span>,
+        <span class="hljs-string">&quot;PLC1.Tag1&quot;</span>: {
+            nodeIdentifier: { namespaceUri: <span class="hljs-string">&quot;urn:NodeOPCUA-Server-default&quot;</span>, identifierWithType: <span class="hljs-string">&quot;i=2001&quot;</span> },
+            dataType: <span class="hljs-string">&quot;Int32&quot;</span>,
         },
     },
     ioActors: {
-         <span class="hljs-string">"PLC1.Tag1"</span>: {
-             name: <span class="hljs-string">"S7-1500 PLC 1.Tag1"</span>,
+         <span class="hljs-string">&quot;PLC1.Tag1&quot;</span>: {
+             name: <span class="hljs-string">&quot;S7-1500 PLC 1.Tag1&quot;</span>,
              objectId: Runtime.newUuid(),
              objectType: CoreTypes.OBJECT_TYPE_IO_ACTOR,
-             coreType: <span class="hljs-string">"IoActor"</span>,
-             valueType: <span class="hljs-string">"plc.Tag1[Int32]"</span>,
+             coreType: <span class="hljs-string">&quot;IoActor&quot;</span>,
+             valueType: <span class="hljs-string">&quot;plc.Tag1[Int32]&quot;</span>,
          },
     },
 };</code></pre>
@@ -137,7 +137,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#clientsubscriptionoptions">clientSubscriptionOptions</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L85">src/opcua-connector.ts:85</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L85">src/opcua-connector.ts:85</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -174,7 +174,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#connectionoptions">connectionOptions</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L48">src/opcua-connector.ts:48</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L48">src/opcua-connector.ts:48</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -192,7 +192,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#connectionuseridentity">connectionUserIdentity</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L59">src/opcua-connector.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L59">src/opcua-connector.ts:59</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -213,7 +213,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#datasources">dataSources</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L92">src/opcua-connector.ts:92</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L92">src/opcua-connector.ts:92</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -239,7 +239,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="opcuaoptions.html">OpcuaOptions</a>.<a href="opcuaoptions.html#endpointurl">endpointUrl</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-connector.ts#L41">src/opcua-connector.ts:41</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-connector.ts#L41">src/opcua-connector.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -255,7 +255,7 @@
 					<div class="tsd-signature tsd-kind-icon">io<wbr>Actors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/bf0c1ad/src/opcua-ioactor-controller.ts#L52">src/opcua-ioactor-controller.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/coatyio/connector.opc-ua.js/blob/673e3c4/src/opcua-ioactor-controller.ts#L52">src/opcua-ioactor-controller.ts:52</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -398,6 +398,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
